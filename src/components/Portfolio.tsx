@@ -2,11 +2,8 @@ import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, type 
 import { useNavigate } from "@tanstack/react-router";
 import { fadeUp } from "@/animations/hero";
 import { portfolioContainer, portfolioItem } from "@/animations/portfolio";
-import {
-  CLIENT_EVENTS,
-  type ClientEvent,
-  type EventType,
-} from "@/data/portfolioData";
+import { useClientEvents } from "@/data/portfolioStore";
+import type { ClientEvent } from "@/data/portfolioData";
 import { useState, useMemo } from "react";
 
 const PORTFOLIO_CATEGORIES = [
@@ -148,12 +145,13 @@ function DesktopPolaroidCard({ event, i, p, onOpen, globalX, globalY }: DesktopP
 
 export function Portfolio() {
   const navigate = useNavigate();
+  const { events } = useClientEvents();
   const [activeCategory, setActiveCategory] = useState<PortfolioCategory>("All");
 
   const filtered = useMemo(() => {
-    if (activeCategory === "All") return CLIENT_EVENTS;
-    return CLIENT_EVENTS.filter((e) => e.eventType === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === "All") return events;
+    return events.filter((e) => e.eventType === activeCategory);
+  }, [events, activeCategory]);
 
   const globalX = useMotionValue(0.5);
   const globalY = useMotionValue(0.5);

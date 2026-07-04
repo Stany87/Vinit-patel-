@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesCategoryRouteImport } from './routes/services.$category'
 import { Route as EventEventIdRouteImport } from './routes/event.$eventId'
@@ -17,6 +18,11 @@ import { Route as EventEventIdRouteImport } from './routes/event.$eventId'
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +43,14 @@ const EventEventIdRoute = EventEventIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/gallery': typeof GalleryRoute
   '/event/$eventId': typeof EventEventIdRoute
   '/services/$category': typeof ServicesCategoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/gallery': typeof GalleryRoute
   '/event/$eventId': typeof EventEventIdRoute
   '/services/$category': typeof ServicesCategoryRoute
@@ -50,20 +58,33 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/gallery': typeof GalleryRoute
   '/event/$eventId': typeof EventEventIdRoute
   '/services/$category': typeof ServicesCategoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gallery' | '/event/$eventId' | '/services/$category'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/gallery'
+    | '/event/$eventId'
+    | '/services/$category'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery' | '/event/$eventId' | '/services/$category'
-  id: '__root__' | '/' | '/gallery' | '/event/$eventId' | '/services/$category'
+  to: '/' | '/admin' | '/gallery' | '/event/$eventId' | '/services/$category'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/gallery'
+    | '/event/$eventId'
+    | '/services/$category'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   GalleryRoute: typeof GalleryRoute
   EventEventIdRoute: typeof EventEventIdRoute
   ServicesCategoryRoute: typeof ServicesCategoryRoute
@@ -76,6 +97,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,6 +132,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   GalleryRoute: GalleryRoute,
   EventEventIdRoute: EventEventIdRoute,
   ServicesCategoryRoute: ServicesCategoryRoute,

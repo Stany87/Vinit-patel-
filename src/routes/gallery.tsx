@@ -4,20 +4,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { EventCard } from "@/components/EventCard";
 import { CustomCursor } from "@/components/CustomCursor";
-import { CLIENT_EVENTS, getAllEventTypes, type EventType } from "@/data/portfolioData";
+import { useClientEvents } from "@/data/portfolioStore";
+import { type EventType } from "@/data/portfolioData";
 
 export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
 });
 
 function GalleryPage() {
-  const allTypes = getAllEventTypes();
+  const { events } = useClientEvents();
   const [activeType, setActiveType] = useState<EventType | "All">("All");
+
+  // Dynamically find all event types present in the store
+  const allTypes = Array.from(new Set(events.map((e) => e.eventType)));
 
   const filtered =
     activeType === "All"
-      ? CLIENT_EVENTS
-      : CLIENT_EVENTS.filter((e) => e.eventType === activeType);
+      ? events
+      : events.filter((e) => e.eventType === activeType);
 
   return (
     <div

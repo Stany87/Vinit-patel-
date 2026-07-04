@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/PageHeader";
 import { EventCard } from "@/components/EventCard";
 import { CustomCursor } from "@/components/CustomCursor";
+import { useClientEvents, getEventsByService } from "@/data/portfolioStore";
 import {
   SERVICE_META,
-  getEventsByService,
   type ServiceCategory,
 } from "@/data/portfolioData";
 
@@ -16,6 +16,7 @@ function ServiceCategoryPage() {
   const { category } = Route.useParams();
   const cat = category as ServiceCategory;
   const meta = SERVICE_META[cat];
+  const { events: allEvents } = useClientEvents();
 
   if (!meta) {
     return (
@@ -25,7 +26,7 @@ function ServiceCategoryPage() {
     );
   }
 
-  const events = getEventsByService(cat);
+  const events = getEventsByService(allEvents, cat);
 
   return (
     <div

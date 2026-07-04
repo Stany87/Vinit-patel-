@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { EventGallery } from "@/components/EventGallery";
 import { EventCard } from "@/components/EventCard";
 import { CustomCursor } from "@/components/CustomCursor";
-import { getEventById, CLIENT_EVENTS } from "@/data/portfolioData";
+import { useClientEvents, getEventById } from "@/data/portfolioStore";
 import { LUXURY_EASE } from "@/animations/hero";
 
 export const Route = createFileRoute("/event/$eventId")({
@@ -14,7 +14,8 @@ export const Route = createFileRoute("/event/$eventId")({
 
 function EventDetailPage() {
   const { eventId } = Route.useParams();
-  const event = getEventById(eventId);
+  const { events } = useClientEvents();
+  const event = getEventById(events, eventId);
 
   if (!event) {
     return (
@@ -30,7 +31,7 @@ function EventDetailPage() {
   }
 
   // Get related events (same type, excluding current)
-  const relatedEvents = CLIENT_EVENTS.filter(
+  const relatedEvents = events.filter(
     (e) => e.eventType === event.eventType && e.id !== event.id,
   ).slice(0, 3);
 
