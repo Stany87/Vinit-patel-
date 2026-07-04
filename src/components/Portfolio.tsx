@@ -31,6 +31,43 @@ const IMAGES: PortfolioImage[] = [
   { id: 9, src: p9, alt: "Couple shoot", categories: ["Couple Shoot"] },
 ];
 
+const POLAROID_SLOTS = [
+  { left: "6%",  top: "4%",  rot: -8,  w: 200, z: 3 },
+  { left: "22%", top: "10%", rot: 6,   w: 190, z: 5 },
+  { left: "40%", top: "2%",  rot: -4,  w: 210, z: 4 },
+  { left: "60%", top: "8%",  rot: 9,   w: 195, z: 3 },
+  { left: "78%", top: "14%", rot: -6,  w: 185, z: 2 },
+  { left: "4%",  top: "34%", rot: 5,   w: 210, z: 4 },
+  { left: "20%", top: "40%", rot: -10, w: 195, z: 6 },
+  { left: "37%", top: "36%", rot: 3,   w: 230, z: 7 },
+  { left: "58%", top: "40%", rot: -5,  w: 205, z: 5 },
+  { left: "76%", top: "38%", rot: 8,   w: 200, z: 4 },
+  { left: "8%",  top: "66%", rot: 4,   w: 200, z: 3 },
+  { left: "26%", top: "70%", rot: -7,  w: 195, z: 5 },
+  { left: "44%", top: "68%", rot: 6,   w: 210, z: 4 },
+  { left: "63%", top: "72%", rot: -3,  w: 200, z: 3 },
+];
+
+const CONFETTI = [
+  { left: "48%", top: "1%",  rot: 10,  c: "#EAE2C8" },
+  { left: "2%",  top: "62%", rot: -20, c: "#C89B3C" },
+  { left: "14%", top: "94%", rot: 25,  c: "#C89B3C" },
+  { left: "82%", top: "60%", rot: -8,  c: "#EAE2C8" },
+  { left: "92%", top: "88%", rot: 14,  c: "#C89B3C" },
+];
+
+const SLOT_MAPPINGS: Record<number, number[]> = {
+  1: [7], // Center
+  2: [6, 8], // Mid-Left, Mid-Right
+  3: [1, 7, 8], // Top-Mid-Left, Center, Mid-Right
+  4: [1, 3, 10, 13], // Spread corners/sides
+  5: [0, 4, 7, 10, 13], // Center + 4 corners
+  6: [0, 2, 4, 10, 12, 13],
+  7: [0, 2, 4, 6, 8, 10, 12],
+  8: [0, 2, 4, 5, 9, 10, 11, 13],
+  9: [0, 1, 2, 4, 6, 7, 9, 10, 12],
+};
+
 export function Portfolio() {
   const { activeCategory, setActiveCategory, filtered } = usePortfolio(IMAGES);
   const lightboxImages = filtered.map((img) => ({ src: img.src, alt: img.alt }));
@@ -104,50 +141,146 @@ export function Portfolio() {
           ))}
         </motion.div>
 
-        {/* Masonry-style grid */}
-        <motion.div
-          variants={portfolioContainer}
-          initial="hidden"
-          animate="visible"
-          className="mt-14 columns-2 md:columns-3 gap-4 space-y-4"
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((img, i) => (
-              <motion.div
-                key={img.id}
-                layout
-                variants={portfolioItem}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="break-inside-avoid cursor-pointer group overflow-hidden"
-                onClick={() => lightbox.open(i)}
-                data-cursor="open"
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-                }}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="lazy"
-                    className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-[color:var(--color-ink)]/0 group-hover:bg-[color:var(--color-ink)]/30 transition-colors duration-500 flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-[10px] tracking-[0.4em]">
-                      VIEW
-                    </span>
+        {/* Mobile/Tablet Layout (Columns/Masonry) */}
+        <div className="block md:hidden mt-14">
+          <motion.div
+            variants={portfolioContainer}
+            initial="hidden"
+            animate="visible"
+            className="columns-2 gap-4 space-y-4"
+          >
+            <AnimatePresence mode="popLayout">
+              {filtered.map((img, i) => (
+                <motion.div
+                  key={`mobile-${img.id}`}
+                  layout
+                  variants={portfolioItem}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="break-inside-avoid cursor-pointer origin-center"
+                  onClick={() => lightbox.open(i)}
+                  data-cursor="open"
+                  whileHover={{
+                    rotate: 0,
+                    scale: 1.04,
+                    zIndex: 10,
+                    transition: { duration: 0.3 },
+                  }}
+                  style={{
+                    rotate: i % 3 === 0 ? -2.5 : i % 3 === 1 ? 2.5 : -1,
+                  }}
+                >
+                  <div
+                    className="bg-white p-2 pb-6"
+                    style={{
+                      boxShadow:
+                        "0 4px 15px -3px rgba(60,40,10,0.15), 0 2px 6px -1px rgba(60,40,10,0.1)",
+                    }}
+                  >
+                    <div className="aspect-square w-full overflow-hidden bg-[#e9e4d5]">
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                    <p
+                      className="mt-2.5 text-center text-[13px] text-[color:var(--color-ink)]/80 select-none truncate px-1"
+                      style={{ fontFamily: "'Great Vibes', cursive" }}
+                    >
+                      {img.alt}
+                    </p>
                   </div>
-                  {/* Gold bottom accent */}
-                  <div className="absolute bottom-0 inset-x-0 h-0.5 bg-[color:var(--color-gold)] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+
+        {/* Desktop Layout (Scattered absolute canvas) */}
+        <div className="hidden md:block mt-14 relative h-[780px] w-full max-w-[1300px]">
+          {/* Confetti flowers in background */}
+          {CONFETTI.map((f, i) => (
+            <div
+              key={`c${i}`}
+              className="absolute pointer-events-none"
+              style={{ left: f.left, top: f.top, transform: `rotate(${f.rot}deg)` }}
+              aria-hidden
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill={f.c}>
+                <path d="M12 2c1.2 2.4 3.2 3.6 5.8 3.6-.8 2.6-.2 4.8 1.6 6.4-2.4 1.2-3.6 3.2-3.6 5.8-2.6-.8-4.8-.2-6.4 1.6-1.2-2.4-3.2-3.6-5.8-3.6.8-2.6.2-4.8-1.6-6.4C4.4 8.2 5.6 6.2 5.6 3.6 8.2 4.4 10.4 3.8 12 2z" />
+                <circle cx="12" cy="12" r="2.2" fill="#8B6A25" />
+              </svg>
+            </div>
+          ))}
+
+          {/* Scattered Polaroids */}
+          <AnimatePresence mode="popLayout">
+            {filtered.map((img, i) => {
+              const selectedSlots =
+                SLOT_MAPPINGS[filtered.length] ||
+                Array.from({ length: filtered.length }, (_, idx) => idx % POLAROID_SLOTS.length);
+              const slotIdx = selectedSlots[i] ?? (i % POLAROID_SLOTS.length);
+              const p = POLAROID_SLOTS[slotIdx];
+
+              return (
+                <motion.div
+                  key={`desktop-${img.id}`}
+                  layout
+                  initial={{ opacity: 0, y: 30, rotate: p.rot * 0.4 }}
+                  animate={{ opacity: 1, y: 0, rotate: p.rot }}
+                  exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{
+                    rotate: 0,
+                    scale: 1.08,
+                    zIndex: 50,
+                    transition: { duration: 0.3 },
+                  }}
+                  style={{
+                    position: "absolute",
+                    left: p.left,
+                    top: p.top,
+                    width: p.w,
+                    zIndex: p.z,
+                    transformOrigin: "center",
+                  }}
+                  className="cursor-pointer group"
+                  onClick={() => lightbox.open(i)}
+                  data-cursor="open"
+                >
+                  <div
+                    className="bg-white p-3 pb-9 transition-shadow duration-300 group-hover:shadow-[0_20px_40px_-15px_rgba(60,40,10,0.4)]"
+                    style={{
+                      boxShadow:
+                        "0 1px 2px rgba(0,0,0,0.08), 0 12px 28px -8px rgba(60,40,10,0.3), 0 30px 60px -20px rgba(60,40,10,0.2)",
+                    }}
+                  >
+                    <div className="aspect-square w-full overflow-hidden bg-[#e9e4d5]">
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                    <p
+                      className="mt-3 text-center text-lg text-[color:var(--color-ink)]/85 select-none truncate px-1"
+                      style={{ fontFamily: "'Great Vibes', cursive" }}
+                    >
+                      {img.alt}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* View full CTA */}
         <motion.div {...fadeUp} className="mt-16 text-center">

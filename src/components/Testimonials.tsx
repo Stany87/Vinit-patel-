@@ -106,7 +106,7 @@ export function Testimonials() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="px-4 md:px-8"
+                className="mx-auto max-w-3xl bg-white/70 backdrop-blur-md border border-[color:var(--color-gold)]/15 rounded-2xl p-8 md:p-12 shadow-[0_15px_40px_-20px_rgba(60,40,10,0.12)]"
               >
                 <Quote
                   className="text-[color:var(--color-gold)]"
