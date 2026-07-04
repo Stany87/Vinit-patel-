@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { fadeUp } from "@/animations/hero";
 import { portfolioContainer, portfolioItem } from "@/animations/portfolio";
 import {
@@ -67,6 +67,102 @@ const SLOT_MAPPINGS: Record<number, number[]> = {
   8: [0, 2, 4, 5, 9, 10, 11, 13],
   9: [0, 1, 2, 4, 6, 7, 9, 10, 12],
 };
+
+interface DesktopPolaroidCardProps {
+  img: PortfolioImage;
+  i: number;
+  p: typeof POLAROID_SLOTS[0];
+  onOpen: () => void;
+}
+
+function DesktopPolaroidCard({ img, i, p, onOpen }: DesktopPolaroidCardProps) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Smooth springs for 3D tilt and 2D floating drift
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { damping: 25, stiffness: 200 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), { damping: 25, stiffness: 200 });
+  const translateX = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { damping: 25, stiffness: 150 });
+  const translateY = useSpring(useTransform(y, [-0.5, 0.5], [-12, 12]), { damping: 25, stiffness: 150 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+    x.set(mouseX / width);
+    y.set(mouseY / height);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      key={`desktop-${img.id}`}
+      layout
+      initial={{ opacity: 0, y: 30, rotate: p.rot * 0.4 }}
+      animate={{ opacity: 1, y: 0, rotate: p.rot }}
+      exit={{ opacity: 0, y: 15, scale: 0.95 }}
+      transition={{
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{
+        rotate: 0,
+        scale: 1.08,
+        zIndex: 50,
+        transition: { duration: 0.3 },
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        position: "absolute",
+        left: p.left,
+        top: p.top,
+        width: p.w,
+        zIndex: p.z,
+        transformOrigin: "center",
+        rotateX,
+        rotateY,
+        x: translateX,
+        y: translateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="cursor-pointer group"
+      onClick={onOpen}
+      data-cursor="open"
+    >
+      <div
+        className="bg-white p-3 pb-9 transition-shadow duration-300 group-hover:shadow-[0_20px_40px_-15px_rgba(60,40,10,0.4)]"
+        style={{
+          boxShadow:
+            "0 1px 2px rgba(0,0,0,0.08), 0 12px 28px -8px rgba(60,40,10,0.3), 0 30px 60px -20px rgba(60,40,10,0.2)",
+          transform: "translateZ(10px)",
+        }}
+      >
+        <div className="aspect-square w-full overflow-hidden bg-[#e9e4d5]">
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            style={{ transform: "translateZ(15px)" }}
+          />
+        </div>
+        <p
+          className="mt-3 text-center text-lg text-[color:var(--color-ink)]/85 select-none truncate px-1"
+          style={{ fontFamily: "'Great Vibes', cursive", transform: "translateZ(20px)" }}
+        >
+          {img.alt}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Portfolio() {
   const { activeCategory, setActiveCategory, filtered } = usePortfolio(IMAGES);
@@ -200,7 +296,10 @@ export function Portfolio() {
         </div>
 
         {/* Desktop Layout (Scattered absolute canvas) */}
-        <div className="hidden md:block mt-14 relative h-[780px] w-full max-w-[1300px]">
+        <div 
+          className="hidden md:block mt-14 relative h-[780px] w-full max-w-[1300px]"
+          style={{ perspective: 1200 }}
+        >
           {/* Confetti flowers in background */}
           {CONFETTI.map((f, i) => (
             <div
@@ -226,57 +325,13 @@ export function Portfolio() {
               const p = POLAROID_SLOTS[slotIdx];
 
               return (
-                <motion.div
+                <DesktopPolaroidCard
                   key={`desktop-${img.id}`}
-                  layout
-                  initial={{ opacity: 0, y: 30, rotate: p.rot * 0.4 }}
-                  animate={{ opacity: 1, y: 0, rotate: p.rot }}
-                  exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  whileHover={{
-                    rotate: 0,
-                    scale: 1.08,
-                    zIndex: 50,
-                    transition: { duration: 0.3 },
-                  }}
-                  style={{
-                    position: "absolute",
-                    left: p.left,
-                    top: p.top,
-                    width: p.w,
-                    zIndex: p.z,
-                    transformOrigin: "center",
-                  }}
-                  className="cursor-pointer group"
-                  onClick={() => lightbox.open(i)}
-                  data-cursor="open"
-                >
-                  <div
-                    className="bg-white p-3 pb-9 transition-shadow duration-300 group-hover:shadow-[0_20px_40px_-15px_rgba(60,40,10,0.4)]"
-                    style={{
-                      boxShadow:
-                        "0 1px 2px rgba(0,0,0,0.08), 0 12px 28px -8px rgba(60,40,10,0.3), 0 30px 60px -20px rgba(60,40,10,0.2)",
-                    }}
-                  >
-                    <div className="aspect-square w-full overflow-hidden bg-[#e9e4d5]">
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                    <p
-                      className="mt-3 text-center text-lg text-[color:var(--color-ink)]/85 select-none truncate px-1"
-                      style={{ fontFamily: "'Great Vibes', cursive" }}
-                    >
-                      {img.alt}
-                    </p>
-                  </div>
-                </motion.div>
+                  img={img}
+                  i={i}
+                  p={p}
+                  onOpen={() => lightbox.open(i)}
+                />
               );
             })}
           </AnimatePresence>
