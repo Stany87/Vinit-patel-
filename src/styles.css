@@ -16,17 +16,8 @@
 }
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
+ * The @theme inline block maps CSS custom properties to Tailwind utility classes.
  * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
  */
 
 @theme inline {
@@ -152,14 +143,28 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
-  
+
   body.locked {
     overflow: hidden;
     height: 100vh;
   }
+
+  /* Hide native cursor on desktop when custom cursor is active */
+  @media (pointer: fine) {
+    body, a, button, [role="button"] {
+      cursor: none !important;
+    }
+  }
+
+  /* Editorial text balance for large headings */
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
-/* ---------------- CAMERA INTRO OVERLAY ---------------- */
+/* ================================================
+   CAMERA INTRO OVERLAY
+   ================================================ */
 #introOverlay {
   position: fixed;
   inset: 0;
@@ -171,9 +176,28 @@
   -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 0, black 0, black 100%);
   mask-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 0, black 0, black 100%);
   will-change: mask-image;
+  overflow: hidden;
 }
-#introOverlay.hidden {
-  display: none;
+
+/* Film grain overlay on intro */
+.intro-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grainShift 0.5s steps(1) infinite;
+}
+
+@keyframes grainShift {
+  0%   { background-position: 0 0; }
+  20%  { background-position: -40px -20px; }
+  40%  { background-position: 20px -40px; }
+  60%  { background-position: -20px 20px; }
+  80%  { background-position: 40px 40px; }
+  100% { background-position: 0 0; }
 }
 
 .stage {
@@ -183,13 +207,16 @@
   flex-direction: column;
   align-items: center;
   gap: 34px;
+  z-index: 3;
 }
+
 #cameraRig {
   position: relative;
   transform-style: preserve-3d;
-  cursor: pointer;
+  cursor: none;
   outline: none;
 }
+
 #cameraSvg {
   display: block;
   width: min(46vw, 360px);
@@ -197,15 +224,20 @@
   overflow: visible;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.65));
 }
+
 .intro-caption {
   text-align: center;
   opacity: 0.94;
 }
+
 .intro-caption h1 {
   font-size: clamp(20px, 2.6vw, 30px);
   letter-spacing: 0.02em;
   color: #f2efe9;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
 }
+
 .intro-caption p {
   margin-top: 10px;
   font-size: 12px;
@@ -214,6 +246,7 @@
   color: #c89b3c;
   font-weight: 500;
 }
+
 .intro-caption p::before {
   content: '';
   display: inline-block;
@@ -225,15 +258,10 @@
   vertical-align: middle;
   animation: pulseDot 1.8s ease-in-out infinite;
 }
+
 @keyframes pulseDot {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
+  0%, 100% { opacity: 0.35; transform: scale(0.8); }
+  50%       { opacity: 1;    transform: scale(1.15); }
 }
 
 .dust-field {
@@ -242,6 +270,7 @@
   pointer-events: none;
   z-index: 1;
 }
+
 .dust {
   position: absolute;
   width: 2px;
@@ -264,3 +293,38 @@
   overflow: hidden;
 }
 
+/* ================================================
+   CUSTOM CURSOR
+   ================================================ */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(200, 155, 60, 0.85);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+.custom-cursor__label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #0b0b0b;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  white-space: nowrap;
+  user-select: none;
+}

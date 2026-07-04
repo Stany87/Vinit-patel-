@@ -72,17 +72,86 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const LOCAL_BUSINESS_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  "name": "Vinit Patel Photography Studio",
+  "description": "Luxury wedding, sangeet, engagement and baby shower photography studio based in Vadodara, Gujarat, India.",
+  "telephone": "+91-99986-65014",
+  "email": "vinitpatel0092@gmail.com",
+  "url": "https://vinitpatelphotography.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "28, Muktanand Society",
+    "addressLocality": "Karelibaug, Vadodara",
+    "addressRegion": "Gujarat",
+    "postalCode": "390018",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 22.3072,
+    "longitude": 73.1812
+  },
+  "priceRange": "₹₹₹",
+  "servesCuisine": null,
+  "sameAs": [
+    "https://www.instagram.com/vinitpatelphotography",
+    "https://www.facebook.com/vinitpatelphotography"
+  ]
+};
+
+const PHOTOGRAPHER_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vinit Patel",
+  "jobTitle": "Wedding Photographer",
+  "worksFor": { "@type": "Organization", "name": "Vinit Patel Photography Studio" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Vadodara", "addressRegion": "Gujarat", "addressCountry": "IN" }
+};
+
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What types of events does Vinit Patel Photography Studio cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We specialise in weddings, sangeet nights, haldi ceremonies, engagements, couple shoots, and baby showers across Gujarat and India." }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book Vinit Patel Photography Studio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We recommend booking at least 3–6 months in advance for weddings and major events to ensure your preferred date is available." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the starting price for wedding photography?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Our Classic package starts at ₹25,000. We also offer Royal and Legacy packages, as well as fully bespoke custom packages tailored to your event." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to receive the final photographs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Edited photos are typically delivered within 3–4 weeks after the event. We also offer a same-day sneak peek with select packages." }
+    }
+  ]
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Vinit Patel Photography Studio — Luxury Wedding Photography" },
-      { name: "description", content: "Capturing timeless wedding, sangeet and baby shower moments with an editorial, luxury eye." },
-      { property: "og:title", content: "Vinit Patel Photography Studio" },
-      { property: "og:description", content: "Luxury wedding photography — creating memories that last forever." },
+      { title: "Vinit Patel Photography Studio — Luxury Wedding Photography Vadodara" },
+      { name: "description", content: "Award-winning luxury wedding, sangeet, engagement & baby shower photographer in Vadodara, Gujarat. Capturing timeless moments with an editorial eye." },
+      { name: "keywords", content: "wedding photographer vadodara, luxury wedding photography gujarat, sangeet photographer, engagement photographer vadodara, Vinit Patel Photography" },
+      { property: "og:title", content: "Vinit Patel Photography Studio — Luxury Wedding Photography" },
+      { property: "og:description", content: "Luxury wedding photography in Vadodara & Gujarat — creating timeless memories that last forever." },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Vinit Patel Photography Studio" },
+      { name: "twitter:description", content: "Luxury wedding photography in Vadodara & Gujarat." },
     ],
     links: [
       {
@@ -106,6 +175,19 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS_SCHEMA) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PHOTOGRAPHER_SCHEMA) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+        />
       </head>
       <body>
         {children}
