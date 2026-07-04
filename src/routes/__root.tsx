@@ -91,8 +91,8 @@ const LOCAL_BUSINESS_SCHEMA = {
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 22.3072,
-    "longitude": 73.1812
+    "latitude": 22.3506765,
+    "longitude": 73.2009101
   },
   "priceRange": "₹₹₹",
   "servesCuisine": null,

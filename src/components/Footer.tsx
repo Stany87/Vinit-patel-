@@ -128,7 +128,7 @@ export function Footer() {
             <div className="relative overflow-hidden rounded-xl border border-[color:var(--color-gold)]/20 shadow-lg bg-black/40 p-1">
               <iframe
                 title="Vinit Patel Photography Studio Location Map"
-                src="https://maps.google.com/maps?q=28%2C%20Muktanand%20Soc%2C%20Karelibaug%2C%20Vadodara%2C%20Gujarat%20390018&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Vinit%20Patel%20Photography%20Vadodara&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="190"
                 style={{ border: 0 }}
@@ -140,7 +140,7 @@ export function Footer() {
             </div>
             <div className="mt-3 flex justify-start md:justify-end">
               <a
-                href="https://maps.google.com/?q=28,+Muktanand+Soc,+Karelibaug,+Vadodara,+Gujarat+390018"
+                href="https://www.google.com/maps/place/Vinit+Patel+Photography/@22.3506765,73.1983352,17z/data=!3m1!4b1!4m6!3m5!1s0x395fcf66dcdc945d:0x2f534017f299bebb!8m2!3d22.3506765!4d73.2009101!16s%2Fg%2F11rf843d4h?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.25em] text-[color:var(--color-gold)] hover:text-white transition-colors"
