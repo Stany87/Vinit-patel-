@@ -1042,6 +1042,31 @@ export function HomePage() {
       {isIntroActive && (
         <div id="introOverlay" ref={introOverlayRef}>
           <div className="dust-field" ref={dustFieldRef} />
+
+          {/* Film strip reels background */}
+          <div className="film-strips-bg">
+            {[
+              { dir: "up",   imgs: [p1, p2, p3, heroCouple] },
+              { dir: "down", imgs: [p4, p5, p6, svcWedding] },
+              { dir: "up",   imgs: [p7, p8, p9, founder] },
+              { dir: "down", imgs: [svcSangeet, p1, p5, svcBaby] },
+              { dir: "up",   imgs: [p3, p6, p8, heroCouple] },
+              { dir: "down", imgs: [p2, p4, p7, collage] },
+              { dir: "up",   imgs: [p9, p5, svcWedding, p1] },
+            ].map((strip, si) => (
+              <div key={si} className="film-strip" data-dir={strip.dir}>
+                <div className="film-strip-inner">
+                  {/* Duplicate the set twice for seamless infinite scroll */}
+                  {[...strip.imgs, ...strip.imgs].map((img, fi) => (
+                    <div key={fi} className="film-frame">
+                      <img src={img} alt="" loading="eager" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="stage">
             <div
               id="cameraRig"

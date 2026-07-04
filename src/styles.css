@@ -178,6 +178,7 @@
 
 .stage {
   position: relative;
+  z-index: 2;
   perspective: 1400px;
   display: flex;
   flex-direction: column;
@@ -262,5 +263,140 @@
   pointer-events: none;
   max-height: 100vh;
   overflow: hidden;
+}
+
+/* ---------------- FILM STRIP BACKGROUND ---------------- */
+.film-strips-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.18;
+}
+
+/* Dark vignette over the film strips so the camera stays readable */
+.film-strips-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 20%, rgba(5,5,5,0.85) 70%, rgba(5,5,5,0.98) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.film-strip {
+  position: absolute;
+  top: 0;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* The strip container scrolls vertically — duplicated content for seamless loop */
+.film-strip-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.film-strip[data-dir="up"] .film-strip-inner {
+  animation: filmScrollUp var(--strip-speed, 30s) linear infinite;
+}
+.film-strip[data-dir="down"] .film-strip-inner {
+  animation: filmScrollDown var(--strip-speed, 30s) linear infinite;
+}
+
+@keyframes filmScrollUp {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+@keyframes filmScrollDown {
+  0%   { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+/* Each frame: sprocket border + photo */
+.film-frame {
+  position: relative;
+  width: 180px;
+  padding: 12px 22px;
+  background: #111;
+  border-left: 22px solid #111;
+  border-right: 22px solid #111;
+  box-sizing: border-box;
+}
+
+/* Sprocket holes — left side */
+.film-frame::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 18px;
+  border-radius: 3px;
+  background: #050505;
+  box-shadow:
+    0 -40px 0 #050505,
+    0  40px 0 #050505,
+    0 -80px 0 #050505,
+    0  80px 0 #050505;
+}
+
+/* Sprocket holes — right side */
+.film-frame::after {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 18px;
+  border-radius: 3px;
+  background: #050505;
+  box-shadow:
+    0 -40px 0 #050505,
+    0  40px 0 #050505,
+    0 -80px 0 #050505,
+    0  80px 0 #050505;
+}
+
+.film-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 1px;
+  filter: sepia(0.15) contrast(1.05) brightness(0.9);
+}
+
+/* Slight gap/border between frames */
+.film-frame + .film-frame {
+  border-top: 3px solid #0a0a0a;
+}
+
+/* Strip positions — spread across the screen, rotated slightly for depth */
+.film-strip:nth-child(1) { left: 2%;  transform: rotate(-2deg); --strip-speed: 28s; }
+.film-strip:nth-child(2) { left: 16%; transform: rotate(1.5deg); --strip-speed: 35s; }
+.film-strip:nth-child(3) { left: 30%; transform: rotate(-1deg); --strip-speed: 32s; }
+.film-strip:nth-child(4) { left: 44%; transform: rotate(2deg); --strip-speed: 26s; }
+.film-strip:nth-child(5) { left: 58%; transform: rotate(-1.5deg); --strip-speed: 38s; }
+.film-strip:nth-child(6) { left: 72%; transform: rotate(1deg); --strip-speed: 30s; }
+.film-strip:nth-child(7) { left: 86%; transform: rotate(-2.5deg); --strip-speed: 33s; }
+
+@media (max-width: 768px) {
+  .film-strip { width: 120px; }
+  .film-frame { width: 120px; padding: 8px 16px; border-left-width: 16px; border-right-width: 16px; }
+  .film-frame::before { left: 2px; width: 8px; height: 12px; }
+  .film-frame::after { right: 2px; width: 8px; height: 12px; }
+  .film-strip:nth-child(1) { left: 0%; }
+  .film-strip:nth-child(2) { left: 18%; }
+  .film-strip:nth-child(3) { left: 36%; }
+  .film-strip:nth-child(4) { left: 54%; }
+  .film-strip:nth-child(5) { left: 72%; }
+  .film-strip:nth-child(6) { left: 90%; }
+  .film-strip:nth-child(7) { display: none; }
 }
 
