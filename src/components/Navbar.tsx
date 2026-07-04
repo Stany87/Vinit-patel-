@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
+  { label: "Gallery", href: "/gallery", isRoute: true },
   { label: "Packages", href: "#packages" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
@@ -94,16 +95,28 @@ export function Navbar({ onBookClick }: NavbarProps) {
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-12 absolute left-1/2 -translate-x-1/2" aria-label="Main navigation">
             {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.href.slice(1);
+              const isActive = !('isRoute' in item) && activeSection === item.href.slice(1);
+              const cls = `relative group text-[13px] font-medium tracking-[0.25em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors duration-300`;
+              const underline = <span className={`absolute -bottom-1.5 left-0 right-0 h-[1px] bg-[color:var(--color-gold)] origin-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />;
+
+              if ('isRoute' in item && item.isRoute) {
+                return (
+                  <Link key={item.label} to={item.href} className={cls}>
+                    {item.label.toUpperCase()}
+                    {underline}
+                  </Link>
+                );
+              }
+
               return (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="relative group text-[13px] font-medium tracking-[0.25em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors duration-300"
+                  className={cls}
                   aria-current={isActive ? "page" : undefined}
                 >
                   {item.label.toUpperCase()}
-                  <span className={`absolute -bottom-1.5 left-0 right-0 h-[1px] bg-[color:var(--color-gold)] origin-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+                  {underline}
                 </a>
               );
             })}
@@ -141,16 +154,30 @@ export function Navbar({ onBookClick }: NavbarProps) {
             className="fixed inset-x-0 top-0 z-40 bg-[color:var(--color-ink)]/97 backdrop-blur-lg pt-24 pb-10 px-8"
           >
             <nav className="flex flex-col gap-6">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-[14px] tracking-[0.3em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors"
-                >
-                  {item.label.toUpperCase()}
-                </a>
-              ))}
+              {NAV_ITEMS.map((item) => {
+                if ('isRoute' in item && item.isRoute) {
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-[14px] tracking-[0.3em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors"
+                    >
+                      {item.label.toUpperCase()}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-[14px] tracking-[0.3em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors"
+                  >
+                    {item.label.toUpperCase()}
+                  </a>
+                );
+              })}
               <button
                 onClick={() => { setMobileOpen(false); onBookClick(); }}
                 className="mt-4 inline-flex items-center justify-center bg-[color:var(--color-gold)] px-6 py-3 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] font-semibold"
