@@ -33,7 +33,7 @@ export function Hero({ onBookClick }: HeroProps) {
     <section
       id="home"
       ref={wrapRef}
-      className="relative bg-[color:var(--color-ink)]"
+      className="relative bg-[color:var(--color-cream)]"
       style={{ height: "200vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
@@ -45,14 +45,14 @@ export function Hero({ onBookClick }: HeroProps) {
           <img
             src={heroCouple}
             alt="Luxury wedding couple photographed by Vinit Patel Photography Studio"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover opacity-85"
             fetchPriority="high"
           />
         </motion.div>
 
-        {/* Overlay gradient */}
+        {/* Overlay gradient to match cream background */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-ink)]/30 via-transparent to-[color:var(--color-ink)]/70"
+          className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-cream)]/20 via-transparent to-[color:var(--color-cream)]/90"
           style={{ opacity: overlayOpacity }}
         />
 
@@ -108,7 +108,7 @@ export function Hero({ onBookClick }: HeroProps) {
                 <div key={i} className="overflow-hidden">
                   <motion.h1
                     variants={staggerItem}
-                    className={`font-serif font-light leading-[0.95] text-white ${
+                    className={`font-serif font-light leading-[0.95] text-[color:var(--color-ink)] ${
                       i === 0
                         ? "text-[52px] md:text-[80px] lg:text-[100px]"
                         : i === 1
@@ -136,7 +136,7 @@ export function Hero({ onBookClick }: HeroProps) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1, ease: LUXURY_EASE }}
-              className="mt-6 max-w-sm text-[13px] leading-[1.9] text-white/65"
+              className="mt-6 max-w-sm text-[13px] leading-[1.9] text-[color:var(--color-ink)]/70"
             >
               Luxury wedding & event photography crafted with an editorial eye.
               We turn fleeting moments into timeless stories.
@@ -152,13 +152,13 @@ export function Hero({ onBookClick }: HeroProps) {
               <button
                 onClick={onBookClick}
                 data-cursor="book"
-                className="book-cta inline-flex items-center border border-[color:var(--color-gold)] px-8 py-4 text-[11px] tracking-[0.3em] text-white hover:bg-[color:var(--color-gold)] hover:text-[color:var(--color-ink)] transition-all duration-400"
+                className="book-cta inline-flex items-center border border-[color:var(--color-gold)] px-8 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] hover:bg-[color:var(--color-gold)] hover:text-white transition-all duration-400"
               >
                 BOOK YOUR SHOOT
               </button>
               <a
                 href="#portfolio"
-                className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-white/60 hover:text-[color:var(--color-gold)] transition-colors"
+                className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)]/60 hover:text-[color:var(--color-gold)] transition-colors"
               >
                 VIEW PORTFOLIO
                 <span className="inline-block h-px w-6 bg-current" />
@@ -174,7 +174,7 @@ export function Hero({ onBookClick }: HeroProps) {
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
         >
-          <span className="text-[9px] tracking-[0.4em] text-white/40">SCROLL</span>
+          <span className="text-[9px] tracking-[0.4em] text-[color:var(--color-ink)]/50">SCROLL</span>
           <motion.div
             className="h-8 w-px bg-gradient-to-b from-[color:var(--color-gold)]/60 to-transparent"
             animate={{ scaleY: [1, 0.4, 1], opacity: [0.6, 1, 0.6] }}
@@ -198,7 +198,7 @@ export function Hero({ onBookClick }: HeroProps) {
               <div className="font-serif text-[color:var(--color-gold)] text-[34px] font-light leading-none">
                 {s.n}
               </div>
-              <div className="mt-2 text-[9px] tracking-[0.3em] text-white/60 whitespace-pre-line">
+              <div className="mt-2 text-[9px] tracking-[0.3em] text-[color:var(--color-ink)]/65 whitespace-pre-line">
                 {s.l}
               </div>
               {i < 2 && <div className="mt-6 ml-auto h-px w-10 bg-[color:var(--color-gold)]/40" />}
