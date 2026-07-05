@@ -284,6 +284,7 @@ export function initCameraIntro(
     const maskState = { r: 0 };
     setMaskHole(0);
 
+    // Phase 1: Shutter click — recoil + iris snaps shut
     tl.to(cameraRig, { scale: 0.97, duration: 0.08, ease: "power2.out" })
       .to(caption, { opacity: 0, y: -12, duration: 0.25, ease: "power2.in" }, "<")
       .to(afBrackets, { opacity: 0, duration: 0.15, ease: "power2.in" }, "<")
@@ -296,6 +297,7 @@ export function initCameraIntro(
       .to(cameraRig, { scale: 1, duration: 0.08, ease: "power2.out" })
       .addLabel("fly");
 
+    // Phase 2: Fly through the lens — zoom + iris opens + mask reveals site
     const FLY_DURATION = 0.9;
     tl.to(cameraAssembly, {
       scale: 30,

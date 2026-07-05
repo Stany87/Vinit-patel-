@@ -11,9 +11,11 @@ import { Testimonials } from "@/components/Testimonials";
 import { BookingCTA } from "@/components/BookingCTA";
 import { Footer } from "@/components/Footer";
 import { BookingModal } from "@/components/BookingModal";
+import { IntroAnimation } from "@/components/IntroAnimation";
 
 export function HomePage() {
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [introComplete, setIntroComplete] = useState(false);
 
   return (
     <div
@@ -23,10 +25,13 @@ export function HomePage() {
       {/* Custom premium cursor — hidden on touch devices via CSS */}
       <CustomCursor />
 
+      {/* Intro Animation Overlay — sits on top of site, masks reveal content behind */}
+      <IntroAnimation onComplete={() => setIntroComplete(true)} />
+
       {/* Main Site */}
       <div id="site">
         <Navbar onBookClick={() => setBookingOpen(true)} />
-        <Hero onBookClick={() => setBookingOpen(true)} startTrigger={true} />
+        <Hero onBookClick={() => setBookingOpen(true)} startTrigger={introComplete} />
         <About />
         <Services />
         <Portfolio />

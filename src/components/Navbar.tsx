@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/home", isRoute: true },
+  { label: "Home", href: "/", isRoute: true },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Gallery", href: "/gallery", isRoute: true },
@@ -89,7 +89,7 @@ export function Navbar({ onBookClick }: NavbarProps) {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${navBg}`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 relative">
-          <Link to="/home" aria-label="Vinit Patel Photography Studio home">
+          <Link to="/" aria-label="Vinit Patel Photography Studio home">
             <Logo />
           </Link>
 

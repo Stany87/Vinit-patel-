@@ -2,13 +2,13 @@ import { Facebook, Instagram, Youtube, MessageCircle, Phone, Mail, MapPin } from
 import contactBg from "@/assets/contact-bg.png";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/home" },
-  { label: "About", href: "/home#about" },
-  { label: "Services", href: "/home#services" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Packages", href: "/home#packages" },
-  { label: "Testimonials", href: "/home#testimonials" },
-  { label: "Contact", href: "/home#contact" },
+  { label: "Packages", href: "/#packages" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 function Logo() {

@@ -254,7 +254,7 @@ function AdminPortal() {
           </form>
 
           <Link
-            to="/home"
+            to="/"
             className="inline-block mt-8 text-[10px] tracking-[0.2em] text-neutral-400 hover:text-[color:var(--color-gold)] transition-colors duration-300"
           >
             ← BACK TO LIVE SITE
@@ -299,7 +299,7 @@ function AdminPortal() {
             </button>
 
             <Link
-              to="/home"
+              to="/"
               className="inline-flex items-center gap-1.5 bg-[color:var(--color-ink)] px-6 py-3 text-[10px] tracking-[0.2em] text-white font-semibold rounded-lg hover:bg-neutral-800 transition-colors"
             >
               LIVE SITE

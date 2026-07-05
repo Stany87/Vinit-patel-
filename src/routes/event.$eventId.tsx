@@ -31,7 +31,7 @@ function EventDetailPage() {
       <div className="flex min-h-screen items-center justify-center" style={{ background: "#f8f7f3" }}>
         <div className="text-center">
           <p className="text-[color:var(--color-ink)]/40 text-sm tracking-wider mb-4">Event not found.</p>
-          <Link to="/home" className="text-[color:var(--color-gold)] text-[11px] tracking-[0.2em] hover:underline">
+          <Link to="/" className="text-[color:var(--color-gold)] text-[11px] tracking-[0.2em] hover:underline">
             BACK TO HOME
           </Link>
         </div>
