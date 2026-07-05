@@ -1,30 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="100%" height="100%">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Inter:wght@300;400;600&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap');
       .monogram {
         font-family: 'Great Vibes', cursive;
         fill: url(#goldGradient);
         text-anchor: middle;
-      }
-      .subtitle {
-        font-family: 'Inter', sans-serif;
-        font-weight: 400;
-        font-size: 6.5px;
-        fill: url(#goldGradient);
-        letter-spacing: 0.35em;
-        text-anchor: middle;
-      }
-      .border-circle {
-        fill: none;
-        stroke: url(#goldGradient);
-        stroke-width: 1.5;
-      }
-      .border-circle-inner {
-        fill: none;
-        stroke: url(#goldGradient);
-        stroke-width: 0.75;
-        stroke-dasharray: 4, 3;
+        font-size: 76px;
       }
     </style>
     
@@ -37,22 +19,6 @@
     </linearGradient>
   </defs>
 
-  <!-- Outer Ring -->
-  <circle cx="100" cy="100" r="90" class="border-circle" />
-  
-  <!-- Inner Dotted Ring -->
-  <circle cx="100" cy="100" r="83" class="border-circle-inner" opacity="0.6" />
-
-  <!-- Monogram Initials -->
-  <text x="100" y="112" font-size="95" class="monogram">VP</text>
-
-  <!-- Elegant separator lines with center diamond -->
-  <g transform="translate(0, 132)">
-    <line x1="50" y1="0" x2="90" y2="0" stroke="url(#goldGradient)" stroke-width="0.75" opacity="0.5" />
-    <polygon points="100,-2.5 102.5,0 100,2.5 97.5,0" fill="url(#goldGradient)" />
-    <line x1="110" y1="0" x2="150" y2="0" stroke="url(#goldGradient)" stroke-width="0.75" opacity="0.5" />
-  </g>
-
-  <!-- Subtitle -->
-  <text x="102" y="152" class="subtitle">PHOTOGRAPHY STUDIO</text>
+  <!-- Clean Monogram containing just the two letters (V and P) -->
+  <text x="60" y="62" class="monogram">VP</text>
 </svg>
