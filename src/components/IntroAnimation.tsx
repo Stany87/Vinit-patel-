@@ -99,7 +99,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
           tabIndex={0}
           aria-label="Click the camera to enter Vinit Patel Photography Studio"
         >
-          <svg id="cameraSvg" viewBox="0 0 480 300">
+          <svg id="cameraSvg" viewBox="-110 -110 220 220">
             <defs>
               <filter id="filmGrain">
                 <feTurbulence
@@ -163,15 +163,16 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <rect width="3.2" height="3.2" fill="#2e2e30" />
                 <rect x="0" y="0" width="1.1" height="3.2" fill="#141415" />
               </pattern>
-              <path id="ringArcTop" d="M 215 180 A 75 75 0 0 1 365 180" fill="none" />
-              <path id="ringArcBottom" d="M 236 180 A 54 54 0 0 0 344 180" fill="none" />
+              <path id="ringArcTop" d="M -75 0 A 75 75 0 0 1 75 0" fill="none" />
+              <path id="ringArcBottom" d="M -54 0 A 54 54 0 0 0 54 0" fill="none" />
               <clipPath id="irisClip">
                 <circle cx="0" cy="0" r="54" />
               </clipPath>
             </defs>
 
             <g id="cameraAssembly" ref={cameraAssemblyRef}>
-              <g id="cameraBody">
+              {/* Camera body hidden — aperture-only James Bond style */}
+              <g id="cameraBody" style={{ display: 'none' }}>
                 <circle cx="62" cy="150" r="12" fill="none" stroke="url(#ringMetal)" strokeWidth="4" />
                 <circle cx="418" cy="150" r="12" fill="none" stroke="url(#ringMetal)" strokeWidth="4" />
                 <rect x="50" y="95" width="380" height="175" rx="10" fill="url(#bodyGrad)" />
@@ -190,11 +191,11 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <rect x="62" y="150" width="86" height="108" rx="8" fill="none" stroke="#000" strokeOpacity="0.4" strokeWidth="1" />
               </g>
 
-              <g id="lensGroup" transform="translate(290,180)">
+              <g id="lensGroup" transform="translate(0,0)">
                 <circle r="75" fill="url(#ringMetal)" />
                 <circle r="75" fill="none" stroke="#050505" strokeWidth="2" opacity="0.5" />
                 <text fontFamily="Inter, sans-serif" fontSize="9" fill="#1c1d1e" letterSpacing="2.5">
-                  <textPath href="#ringArcTop" startOffset="50%" textAnchor="middle" transform="translate(-290,-180)">
+                  <textPath href="#ringArcTop" startOffset="50%" textAnchor="middle">
                     STUDIO OPTIK
                   </textPath>
                 </text>
@@ -202,7 +203,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <circle r="65" fill="none" stroke="#050505" strokeWidth="1.4" opacity="0.6" />
                 <circle r="54" fill="url(#ringMetal)" />
                 <text fontFamily="Inter, sans-serif" fontSize="7.5" fill="#1c1d1e" letterSpacing="1.6">
-                  <textPath href="#ringArcBottom" startOffset="50%" textAnchor="middle" transform="translate(-290,-180)">
+                  <textPath href="#ringArcBottom" startOffset="50%" textAnchor="middle">
                     F2.0 · 35MM STUDIO
                   </textPath>
                 </text>

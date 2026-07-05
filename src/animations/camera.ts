@@ -11,8 +11,8 @@ export interface CameraRefs {
   afBrackets: SVGGElement | null;
 }
 
-const LENS_LOCAL_X = 290;
-const LENS_LOCAL_Y = 180;
+const LENS_LOCAL_X = 0;
+const LENS_LOCAL_Y = 0;
 const SVG_ORIGIN = `${LENS_LOCAL_X} ${LENS_LOCAL_Y}`;
 const IRIS_R = 54;
 const REST_OPENNESS = 0.68;
