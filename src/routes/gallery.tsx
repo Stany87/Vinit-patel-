@@ -9,6 +9,17 @@ import { type EventType } from "@/data/portfolioData";
 
 export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
+  head: () => ({
+    meta: [
+      { title: "Photo Gallery | Vinit Patel Photography Studio — Vadodara Photographer Portfolio" },
+      { name: "description", content: "Browse the portfolio of Vinit Patel Photography Studio — weddings, sangeets, engagements & baby showers. See why we are rated the best professional photography studio in Vadodara, Gujarat." },
+      { property: "og:title", content: "Photo Gallery — Vinit Patel Photography Studio" },
+      { property: "og:description", content: "Explore stunning wedding, sangeet & event photography from Vadodara's top photographer." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://vinitpatelphotography.com/gallery" },
+    ],
+  }),
 });
 
 function GalleryPage() {

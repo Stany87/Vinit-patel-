@@ -59,7 +59,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
       >
         <motion.img
           src={heroCouple}
-          alt="Luxury wedding couple"
+          alt="Luxury wedding photography by Vinit Patel Photography Studio — best professional photographer in Vadodara, Gujarat"
           className="absolute inset-0 h-[112%] w-[112%] -left-[6%] -top-[6%] object-cover"
           style={{ 
             y: imageScrollY,
@@ -100,37 +100,39 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               VADODARA · INDIA · EST. 2014
             </motion.p>
 
-            {/* Headline Split Reveal */}
-            <div className="overflow-hidden mb-[-12px] md:mb-[-16px]">
-              <motion.h1
-                initial={{ opacity: 0, y: 80 }}
-                animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-                transition={{ duration: 1.2, delay: baseDelay + stagger, ease: EASE }}
-                className="font-serif font-light leading-[0.9] text-white text-[64px] md:text-[78px] lg:text-[84px]"
-              >
-                Every Frame
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden mb-[-12px] md:mb-[-16px]">
-              <motion.h1
-                initial={{ opacity: 0, y: 80 }}
-                animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-                transition={{ duration: 1.2, delay: baseDelay + stagger * 2, ease: EASE }}
-                className="font-serif font-light italic leading-[0.9] text-[color:var(--color-gold)] text-[64px] md:text-[78px] lg:text-[84px]"
-              >
-                Tells
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{ opacity: 0, y: 80 }}
-                animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-                transition={{ duration: 1.2, delay: baseDelay + stagger * 3, ease: EASE }}
-                className="font-serif font-light leading-[0.9] text-white text-[64px] md:text-[78px] lg:text-[84px]"
-              >
-                A Story.
-              </motion.h1>
-            </div>
+            {/* Headline — single h1 for SEO, styled with spans */}
+            <h1 className="font-serif font-light leading-[0.9] text-white text-[64px] md:text-[78px] lg:text-[84px]">
+              <div className="overflow-hidden mb-[-12px] md:mb-[-16px]">
+                <motion.span
+                  className="block"
+                  initial={{ opacity: 0, y: 80 }}
+                  animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+                  transition={{ duration: 1.2, delay: baseDelay + stagger, ease: EASE }}
+                >
+                  Every Frame
+                </motion.span>
+              </div>
+              <div className="overflow-hidden mb-[-12px] md:mb-[-16px]">
+                <motion.span
+                  className="block italic text-[color:var(--color-gold)]"
+                  initial={{ opacity: 0, y: 80 }}
+                  animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+                  transition={{ duration: 1.2, delay: baseDelay + stagger * 2, ease: EASE }}
+                >
+                  Tells
+                </motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ opacity: 0, y: 80 }}
+                  animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+                  transition={{ duration: 1.2, delay: baseDelay + stagger * 3, ease: EASE }}
+                >
+                  A Story.
+                </motion.span>
+              </div>
+            </h1>
 
             {/* Supporting copy */}
             <motion.p
@@ -139,7 +141,8 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               transition={{ duration: 1, delay: baseDelay + stagger * 4, ease: EASE }}
               className="mt-10 text-[15px] md:text-[18px] leading-[1.7] text-[#e0e0e0] font-light"
             >
-              Luxury wedding & event photography crafted with an editorial eye.
+              Luxury wedding & event photography crafted with an editorial eye by
+              the top professional photography studio in Vadodara, Gujarat.
               We turn fleeting moments into timeless stories.
             </motion.p>
 

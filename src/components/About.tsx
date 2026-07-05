@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Camera, Sparkles, UserRound } from "lucide-react";
 import { staggerContainer, staggerItem, fadeUp } from "@/animations/hero";
-import founder from "@/assets/founder.jpg";
+import founderStudio from "@/assets/vinit-studio.jpg";
 
 const FEATURES = [
   {
@@ -62,10 +62,12 @@ export function About() {
               variants={staggerItem}
               className="mt-8 text-[13px] leading-[2] text-white/70 max-w-xs"
             >
-              Photography for me is not just clicking pictures — it's about
-              capturing emotions, connections, and beautiful moments you will
-              cherish forever. At Vinit Patel Photography Studio, we turn your
-              special moments into timeless stories.
+              As the best photographer in Vadodara, I believe photography is
+              not just clicking pictures — it's about capturing emotions,
+              connections, and the beautiful moments you will cherish forever.
+              At our professional photography studio in Gujarat, we specialise
+              in luxury wedding photography, sangeet coverage, and baby shower
+              photoshoots — turning your special moments into timeless stories.
             </motion.p>
 
             {/* Signature */}
@@ -107,8 +109,8 @@ export function About() {
             {/* Offset gold frame */}
             <div className="absolute inset-4 border border-[color:var(--color-gold)]/70 translate-x-4 translate-y-4" />
             <motion.img
-              src={founder}
-              alt="Vinit Patel — Founder and lead photographer"
+              src={founderStudio}
+              alt="Vinit Patel — Best wedding photographer and founder of Vinit Patel Photography Studio in Vadodara, Gujarat"
               className="relative w-full max-w-[340px] object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}

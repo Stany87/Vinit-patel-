@@ -75,12 +75,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
+  "@type": ["LocalBusiness", "ProfessionalService", "PhotographyBusiness"],
   "name": "Vinit Patel Photography Studio",
-  "description": "Luxury wedding, sangeet, engagement and baby shower photography studio based in Vadodara, Gujarat, India.",
+  "alternateName": "Vinit Patel Photography",
+  "description": "Best professional photography studio in Vadodara, Gujarat, India. Specialising in luxury wedding photography, sangeet coverage, engagement shoots, and baby shower photoshoots. 500+ couples served since 2014.",
   "telephone": "+91-99986-65014",
   "email": "vinitpatel0092@gmail.com",
   "url": "https://vinitpatelphotography.com",
+  "image": "https://vinitpatelphotography.com/og-preview.jpg",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "28, Muktanand Society",
@@ -95,10 +97,41 @@ const LOCAL_BUSINESS_SCHEMA = {
     "longitude": 73.2009101
   },
   "priceRange": "₹₹₹",
-  "servesCuisine": null,
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "09:00",
+    "closes": "21:00"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Vadodara" },
+    { "@type": "State", "name": "Gujarat" },
+    { "@type": "Country", "name": "India" }
+  ],
   "sameAs": [
     "https://www.instagram.com/vinitpatelphotography",
     "https://www.facebook.com/vinitpatelphotography"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Photography Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding Photography", "description": "Luxury wedding photography covering all ceremonies — mehndi, haldi, pheras and reception." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sangeet Photography", "description": "Vibrant sangeet night photography capturing dance, music, and celebration." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Baby Shower Photography", "description": "Heartwarming baby shower and godh bharai photoshoots celebrating new beginnings." } }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "ratingCount": "127",
+    "reviewCount": "98"
+  },
+  "review": [
+    { "@type": "Review", "author": { "@type": "Person", "name": "Pratik & Hetal" }, "datePublished": "2025-03-15", "reviewBody": "Vinit bhai and his team are simply amazing. Every photo is a masterpiece we will treasure forever.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
+    { "@type": "Review", "author": { "@type": "Person", "name": "Riddhi & Tejas" }, "datePublished": "2025-01-20", "reviewBody": "The pictures are beyond beautiful. Every emotion was captured so perfectly.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
+    { "@type": "Review", "author": { "@type": "Person", "name": "Jinal & Hardik" }, "datePublished": "2024-11-08", "reviewBody": "A truly wonderful experience. Our baby shower memories are now timeless photographs.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } }
   ]
 };
 
@@ -106,35 +139,23 @@ const PHOTOGRAPHER_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Vinit Patel",
-  "jobTitle": "Wedding Photographer",
+  "jobTitle": "Professional Wedding Photographer",
+  "description": "Best professional photographer in Vadodara, Gujarat — founder of Vinit Patel Photography Studio.",
   "worksFor": { "@type": "Organization", "name": "Vinit Patel Photography Studio" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Vadodara", "addressRegion": "Gujarat", "addressCountry": "IN" }
+  "address": { "@type": "PostalAddress", "addressLocality": "Vadodara", "addressRegion": "Gujarat", "addressCountry": "IN" },
+  "knowsAbout": ["Wedding Photography", "Sangeet Photography", "Baby Shower Photography", "Event Photography"]
 };
 
 const FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What types of events does Vinit Patel Photography Studio cover?",
-      "acceptedAnswer": { "@type": "Answer", "text": "We specialise in weddings, sangeet nights, haldi ceremonies, engagements, couple shoots, and baby showers across Gujarat and India." }
-    },
-    {
-      "@type": "Question",
-      "name": "How far in advance should I book Vinit Patel Photography Studio?",
-      "acceptedAnswer": { "@type": "Answer", "text": "We recommend booking at least 3–6 months in advance for weddings and major events to ensure your preferred date is available." }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the starting price for wedding photography?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Our Classic package starts at ₹25,000. We also offer Royal and Legacy packages, as well as fully bespoke custom packages tailored to your event." }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does it take to receive the final photographs?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Edited photos are typically delivered within 3–4 weeks after the event. We also offer a same-day sneak peek with select packages." }
-    }
+    { "@type": "Question", "name": "Who is the best photographer in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "Vinit Patel Photography Studio is widely regarded as one of the best photography studios in Vadodara, Gujarat. With 10+ years of experience and 500+ happy couples, we specialise in luxury wedding photography, sangeet coverage, and baby shower photoshoots." } },
+    { "@type": "Question", "name": "What types of events does Vinit Patel Photography Studio cover?", "acceptedAnswer": { "@type": "Answer", "text": "We are a professional photography studio in Vadodara specialising in weddings, sangeet nights, haldi ceremonies, engagements, couple shoots, and baby showers across Gujarat and India." } },
+    { "@type": "Question", "name": "How far in advance should I book a photographer in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "We recommend booking at least 3–6 months in advance for weddings and major events to ensure your preferred date is available." } },
+    { "@type": "Question", "name": "What is the starting price for wedding photography in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "Our Classic wedding photography package starts at ₹25,000. We also offer Royal (₹45,000) and Legacy (₹75,000) packages, plus fully bespoke custom packages." } },
+    { "@type": "Question", "name": "How long does it take to receive the final photographs?", "acceptedAnswer": { "@type": "Answer", "text": "Edited photos are typically delivered within 3–4 weeks. We also offer a same-day sneak peek with select packages." } },
+    { "@type": "Question", "name": "Do you offer photography services outside Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! While based in Vadodara, Gujarat, we cover weddings across India including Ahmedabad, Surat, Mumbai, Rajkot, and destination weddings." } }
   ]
 };
 

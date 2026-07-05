@@ -9,21 +9,21 @@ import type { ServiceCategory } from "@/data/portfolioData";
 const SERVICES: { title: string; desc: string; image: string; icon: typeof Heart; category: ServiceCategory }[] = [
   {
     title: "WEDDING PHOTOGRAPHY",
-    desc: "From dreamy weddings to grand celebrations, we capture every emotion and detail.",
+    desc: "From dreamy weddings to grand celebrations, our professional photographers in Vadodara capture every emotion and detail.",
     image: svcWedding,
     icon: Heart,
     category: "wedding",
   },
   {
     title: "SANGEET PHOTOGRAPHY",
-    desc: "Fun, music, dance and endless memories beautifully captured.",
+    desc: "Fun, music, dance and endless memories beautifully captured by the best event photographer in Vadodara.",
     image: svcSangeet,
     icon: Music,
     category: "sangeet",
   },
   {
     title: "BABY SHOWER PHOTOSHOOT",
-    desc: "Celebrating new beginnings with love, joy and heartwarming moments.",
+    desc: "Celebrating new beginnings with love, joy and heartwarming moments — professional baby shower photography in Gujarat.",
     image: svcBaby,
     icon: Baby,
     category: "baby-shower",
@@ -121,7 +121,7 @@ export function Services() {
                   <div className="relative w-full aspect-[4/3] overflow-hidden">
                     <img 
                       src={svc.image} 
-                      alt={svc.title}
+                      alt={`${svc.title} by Vinit Patel Photography Studio in Vadodara, Gujarat`}
                       className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
                       loading="lazy"
                     />

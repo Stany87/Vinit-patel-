@@ -2,7 +2,13 @@ import { Facebook, Instagram, Youtube, MessageCircle, Phone, Mail, MapPin } from
 import contactBg from "@/assets/contact-bg.png";
 
 const NAV_ITEMS = [
-  "Home", "About", "Services", "Portfolio", "Packages", "Testimonials", "Contact",
+  { label: "Home", href: "/home" },
+  { label: "About", href: "/home#about" },
+  { label: "Services", href: "/home#services" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Packages", href: "/home#packages" },
+  { label: "Testimonials", href: "/home#testimonials" },
+  { label: "Contact", href: "/home#contact" },
 ];
 
 function Logo() {
@@ -45,8 +51,9 @@ export function Footer() {
           <Logo />
           <div className="mt-6 h-px w-12 bg-[color:var(--color-gold)]/50" />
           <p className="mt-6 text-[12px] leading-[2] text-white/55 max-w-xs">
-            We don't just take pictures — we capture feelings, moments, and
-            memories for a lifetime.
+            Vadodara's top-rated professional photography studio. We don't just
+            take pictures — we capture feelings, moments, and memories for a
+            lifetime. Best wedding photographer in Gujarat.
           </p>
           <div className="mt-6 flex gap-3">
             {[
@@ -108,12 +115,12 @@ export function Footer() {
           <div className="mt-4 h-px w-10 bg-[color:var(--color-gold)]/50" />
           <ul className="mt-6 space-y-3 text-[12px] tracking-[0.2em] text-white/55">
             {NAV_ITEMS.map((n) => (
-              <li key={n}>
+              <li key={n.label}>
                 <a
-                  href={`#${n.toLowerCase()}`}
+                  href={n.href}
                   className="hover:text-[color:var(--color-gold)] transition-colors"
                 >
-                  {n.toUpperCase()}
+                  {n.label.toUpperCase()}
                 </a>
               </li>
             ))}

@@ -8,8 +8,37 @@ import {
   type ServiceCategory,
 } from "@/data/portfolioData";
 
+const SERVICE_SEO: Record<string, { title: string; desc: string }> = {
+  wedding: {
+    title: "Wedding Photography | Vinit Patel Photography Studio — Best Wedding Photographer Vadodara",
+    desc: "Luxury wedding photography in Vadodara, Gujarat by Vinit Patel. From traditional ceremonies to modern celebrations, we capture every moment with an editorial eye. Book the best wedding photographer today.",
+  },
+  sangeet: {
+    title: "Sangeet Photography | Vinit Patel Photography Studio — Event Photographer Vadodara",
+    desc: "Professional sangeet night photography in Vadodara, Gujarat. Vibrant dance, music & celebration coverage by Vinit Patel Photography Studio.",
+  },
+  "baby-shower": {
+    title: "Baby Shower Photography | Vinit Patel Photography Studio — Vadodara Photographer",
+    desc: "Beautiful baby shower photoshoots in Vadodara, Gujarat. Celebrate new beginnings with Vinit Patel Photography Studio — heartwarming, creative & professional.",
+  },
+};
+
 export const Route = createFileRoute("/services/$category")({
   component: ServiceCategoryPage,
+  head: ({ params }) => {
+    const seo = SERVICE_SEO[params.category] || { title: "Services | Vinit Patel Photography Studio", desc: "Professional photography services in Vadodara, Gujarat." };
+    return {
+      meta: [
+        { title: seo.title },
+        { name: "description", content: seo.desc },
+        { property: "og:title", content: seo.title },
+        { property: "og:description", content: seo.desc },
+      ],
+      links: [
+        { rel: "canonical", href: `https://vinitpatelphotography.com/services/${params.category}` },
+      ],
+    };
+  },
 });
 
 function ServiceCategoryPage() {

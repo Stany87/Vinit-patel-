@@ -1,0 +1,14 @@
+# Vinit Patel Photography Studio
+# https://vinitpatelphotography.com
+
+User-agent: *
+Allow: /
+
+# Prevent indexing of intro splash page (canonical → /home)
+Disallow: /$
+
+# Admin panel
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://vinitpatelphotography.com/sitemap.xml
