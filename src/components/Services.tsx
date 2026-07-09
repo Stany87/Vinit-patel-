@@ -23,7 +23,7 @@ const SERVICES: { title: string; desc: string; image: string; icon: any; categor
     category: "wedding",
   },
   {
-    title: "BABY SHOOT",
+    title: "BABY SHOWER",
     desc: "Celebrating fresh life. Heartwarming and creative baby shower, maternity, and newborn shoots to preserve your family's first milestones.",
     image: svcBaby,
     icon: Baby,

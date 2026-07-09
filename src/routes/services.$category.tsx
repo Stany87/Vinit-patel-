@@ -18,7 +18,7 @@ const SERVICE_SEO: Record<string, { title: string; desc: string }> = {
     desc: "Luxury wedding photography in Vadodara, Gujarat by Vinit Patel. From traditional ceremonies to modern celebrations, we capture every moment with an editorial eye. Book the best wedding photographer today.",
   },
   "baby-shoot": {
-    title: "Baby Shoot | Vinit Patel Photography — Vadodara Photographer",
+    title: "Baby Shower | Vinit Patel Photography — Vadodara Photographer",
     desc: "Beautiful baby shower, maternity, and newborn photoshoots in Vadodara, Gujarat. Celebrate new beginnings with Vinit Patel Photography — heartwarming, creative & professional.",
   },
 };

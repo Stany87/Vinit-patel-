@@ -33,7 +33,7 @@ export const SERVICE_META: Record<
     eventTypes: ["Wedding", "Haldi"],
   },
   "baby-shoot": {
-    title: "Baby Shoot",
+    title: "Baby Shower",
     subtitle: "Celebrating new beginnings with love, joy and heartwarming baby/maternity moments.",
     coverImage: svcBaby,
     eventTypes: ["Baby Shower"],
