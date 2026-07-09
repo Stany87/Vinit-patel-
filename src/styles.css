@@ -192,11 +192,6 @@
 
 /* Mobile touch optimization — ensure native scroll works and remove 300ms tap delay */
 @media (pointer: coarse) {
-  body {
-    touch-action: manipulation;
-    -webkit-overflow-scrolling: touch;
-  }
-
   /* Reduce GPU-heavy effects on mobile (after intro) */
   .hero-noise,
   .hero-vignette {
