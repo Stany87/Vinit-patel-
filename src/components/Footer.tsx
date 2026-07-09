@@ -15,7 +15,7 @@ function Logo() {
   return (
     <img
       src={logoImg}
-      alt="Vinit Patel Photography Studio Logo"
+      alt="Vinit Patel Photography Logo"
       className="h-12 md:h-14 w-auto object-contain"
     />
   );
@@ -122,11 +122,11 @@ export function Footer() {
         {/* Map column */}
         <div className="relative flex flex-col items-stretch sm:items-end justify-start w-full">
           <div className="w-full sm:max-w-[300px]">
-            <h3 className="text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">OUR STUDIO</h3>
+            <h3 className="text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">OUR LOCATION</h3>
             <div className="mt-4 h-px w-10 bg-[color:var(--color-gold)]/50 mb-6" />
             <div className="relative overflow-hidden rounded-xl border border-[color:var(--color-gold)]/20 shadow-lg bg-black/40 p-1">
               <iframe
-                title="Vinit Patel Photography Studio Location Map"
+                title="Vinit Patel Photography Location Map"
                 src="https://maps.google.com/maps?q=Vinit%20Patel%20Photography%20Vadodara&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="190"
@@ -153,7 +153,7 @@ export function Footer() {
 
       {/* Copyright */}
       <div className="relative z-10 mx-auto mt-16 max-w-[1300px] border-t border-white/8 px-6 md:px-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-white/30">
-        <span>© {year} Vinit Patel Photography Studio. All Rights Reserved.</span>
+        <span>© {year} Vinit Patel Photography. All Rights Reserved.</span>
         <span className="tracking-[0.2em]">VADODARA · GUJARAT · INDIA</span>
       </div>
     </footer>

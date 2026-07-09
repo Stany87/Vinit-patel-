@@ -72,13 +72,13 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       {/* Film strip reels background */}
       <div className="film-strips-bg">
         {[
-          { dir: "up",   imgs: [p1, p2, p3, heroCouple] },
+          { dir: "up", imgs: [p1, p2, p3, heroCouple] },
           { dir: "down", imgs: [p4, p5, p6, svcWedding] },
-          { dir: "up",   imgs: [p7, p8, p9, founder] },
+          { dir: "up", imgs: [p7, p8, p9, founder] },
           { dir: "down", imgs: [svcSangeet, p1, p5, svcBaby] },
-          { dir: "up",   imgs: [p3, p6, p8, heroCouple] },
+          { dir: "up", imgs: [p3, p6, p8, heroCouple] },
           { dir: "down", imgs: [p2, p4, p7, collage] },
-          { dir: "up",   imgs: [p9, p5, svcWedding, p1] },
+          { dir: "up", imgs: [p9, p5, svcWedding, p1] },
         ].map((strip, si) => (
           <div key={si} className="film-strip" data-dir={strip.dir}>
             <div className="film-strip-inner">
@@ -100,7 +100,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
           ref={cameraRigRef}
           role="button"
           tabIndex={0}
-          aria-label="Click the camera to enter Vinit Patel Photography Studio"
+          aria-label="Click the camera to enter Vinit Patel Photography"
         >
           <svg id="cameraSvg" viewBox="-110 -110 220 220">
             <defs>
@@ -167,10 +167,10 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <circle cx="150" cy="86" r="2" fill="#8b8880" />
                 <circle cx="176" cy="86" r="2.4" fill="#3a1414" />
                 <text x="98" y="132" fontFamily="Inter, sans-serif" fontWeight="600" fontSize="19" fill="#eceae4" letterSpacing="0.5">
-                  STUDIO 1<tspan fill="#c9a227" fontSize="12" dy="-6">R</tspan>
+                  VINIT PATEL<tspan fill="#c9a227" fontSize="12" dy="-6">R</tspan>
                 </text>
                 <text x="382" y="130" textAnchor="end" fontFamily="Inter, sans-serif" fontWeight="600" fontSize="17" fill="#eceae4" letterSpacing="2">
-                  VP STUDIO
+                  VP PHOTO
                 </text>
                 <rect x="62" y="150" width="86" height="108" rx="8" fill="url(#gripTexture)" />
                 <rect x="62" y="150" width="86" height="108" rx="8" fill="none" stroke="#000" strokeOpacity="0.4" strokeWidth="1" />
@@ -181,7 +181,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <circle r="75" fill="none" stroke="#050505" strokeWidth="2" opacity="0.5" />
                 <text fontFamily="Inter, sans-serif" fontSize="9" fill="#1c1d1e" letterSpacing="2.5">
                   <textPath href="#ringArcTop" startOffset="50%" textAnchor="middle">
-                    STUDIO OPTIK
+                    VINIT PATEL OPTIK
                   </textPath>
                 </text>
                 <circle id="focusRing" ref={focusRingRef} r="65" fill="url(#knurl)" stroke="#0a0a0a" strokeWidth="1" />
@@ -189,7 +189,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <circle r="54" fill="url(#ringMetal)" />
                 <text fontFamily="Inter, sans-serif" fontSize="7.5" fill="#1c1d1e" letterSpacing="1.6">
                   <textPath href="#ringArcBottom" startOffset="50%" textAnchor="middle">
-                    F2.0 · 35MM STUDIO
+                    F2.0 · 35MM LENS
                   </textPath>
                 </text>
                 <text x="-68" y="4" fontFamily="Inter, sans-serif" fontSize="8" fill="#3a3b3c" letterSpacing="1" transform="rotate(-90 -68 4)">
@@ -215,7 +215,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         </div>
 
         <div className="intro-caption" ref={captionRef}>
-          <h1>Vinit Patel Photography Studio</h1>
+          <h1>Vinit Patel Photography</h1>
           <p>Tap to enter</p>
         </div>
       </div>

@@ -166,7 +166,7 @@ function AdminPortal() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(events, null, 2));
     const downloadAnchor = document.createElement("a");
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `vp_studio_backup_${new Date().toISOString().split('T')[0]}.json`);
+    downloadAnchor.setAttribute("download", `vp_photography_backup_${new Date().toISOString().split('T')[0]}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -224,7 +224,7 @@ function AdminPortal() {
           </div>
 
           <h1 className="font-serif text-[28px] font-light text-[color:var(--color-ink)] leading-none">
-            Vinit Patel Studio
+            Vinit Patel Photography
           </h1>
           <p className="mt-2 text-[10px] tracking-[0.3em] text-[color:var(--color-gold)] uppercase font-semibold">
             CMS ADMIN PORTAL
@@ -285,7 +285,7 @@ function AdminPortal() {
               </span>
             </div>
             <h1 className="font-serif text-[38px] md:text-[46px] font-light text-[color:var(--color-ink)] mt-3">
-              Studio Manager
+              Photography Manager
             </h1>
           </div>
 

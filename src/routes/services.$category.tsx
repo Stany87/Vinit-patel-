@@ -9,24 +9,24 @@ import {
 } from "@/data/portfolioData";
 
 const SERVICE_SEO: Record<string, { title: string; desc: string }> = {
+  "pre-wedding": {
+    title: "Pre Wedding Shoot | Vinit Patel Photography — Best Pre Wedding Photographer Vadodara",
+    desc: "Vibrant and intimate pre-wedding photoshoots in Vadodara, Gujarat by Vinit Patel. Capturing your unique chemistry in beautiful locations. Book your pre-wedding shoot today.",
+  },
   wedding: {
-    title: "Wedding Photography | Vinit Patel Photography Studio — Best Wedding Photographer Vadodara",
+    title: "Wedding Photography | Vinit Patel Photography — Best Wedding Photographer Vadodara",
     desc: "Luxury wedding photography in Vadodara, Gujarat by Vinit Patel. From traditional ceremonies to modern celebrations, we capture every moment with an editorial eye. Book the best wedding photographer today.",
   },
-  sangeet: {
-    title: "Sangeet Photography | Vinit Patel Photography Studio — Event Photographer Vadodara",
-    desc: "Professional sangeet night photography in Vadodara, Gujarat. Vibrant dance, music & celebration coverage by Vinit Patel Photography Studio.",
-  },
-  "baby-shower": {
-    title: "Baby Shower Photography | Vinit Patel Photography Studio — Vadodara Photographer",
-    desc: "Beautiful baby shower photoshoots in Vadodara, Gujarat. Celebrate new beginnings with Vinit Patel Photography Studio — heartwarming, creative & professional.",
+  "baby-shoot": {
+    title: "Baby Shoot | Vinit Patel Photography — Vadodara Photographer",
+    desc: "Beautiful baby shower, maternity, and newborn photoshoots in Vadodara, Gujarat. Celebrate new beginnings with Vinit Patel Photography — heartwarming, creative & professional.",
   },
 };
 
 export const Route = createFileRoute("/services/$category")({
   component: ServiceCategoryPage,
   head: ({ params }) => {
-    const seo = SERVICE_SEO[params.category] || { title: "Services | Vinit Patel Photography Studio", desc: "Professional photography services in Vadodara, Gujarat." };
+    const seo = SERVICE_SEO[params.category] || { title: "Services | Vinit Patel Photography", desc: "Professional photography services in Vadodara, Gujarat." };
     return {
       meta: [
         { title: seo.title },

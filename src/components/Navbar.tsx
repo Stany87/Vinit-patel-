@@ -17,7 +17,7 @@ function Logo() {
   return (
     <img
       src={logoImg}
-      alt="Vinit Patel Photography Studio Logo"
+      alt="Vinit Patel Photography Logo"
       className="h-10 md:h-12 w-auto object-contain"
     />
   );
@@ -81,7 +81,7 @@ export function Navbar({ onBookClick }: NavbarProps) {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${navBg}`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 relative">
-          <Link to="/" aria-label="Vinit Patel Photography Studio home">
+          <Link to="/" aria-label="Vinit Patel Photography home">
             <Logo />
           </Link>
 

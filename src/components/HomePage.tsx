@@ -67,7 +67,7 @@ export function HomePage() {
 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/919998665014?text=Hi%20Vinit%20Patel%20Photography%20Studio!%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services."
+            href="https://wa.me/919998665014?text=Hi%20Vinit%20Patel%20Photography!%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services."
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_15px_rgba(37,211,102,0.3)] hover:scale-110 transition-all duration-300"

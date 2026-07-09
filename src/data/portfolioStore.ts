@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CLIENT_EVENTS as DEFAULT_EVENTS, type ClientEvent, type EventType, type ServiceCategory, SERVICE_META } from "./portfolioData";
 
-const STORAGE_KEY = "vinit_studio_events_v1";
+const STORAGE_KEY = "vinit_photography_events_v2";
 
 // Simple pub-sub listener set for client-side reactive updates
 const listeners = new Set<() => void>();

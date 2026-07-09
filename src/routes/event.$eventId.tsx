@@ -25,8 +25,8 @@ export const Route = createFileRoute("/event/$eventId")({
   component: EventDetailPage,
   head: ({ params }) => ({
     meta: [
-      { title: `Event Gallery — Vinit Patel Photography Studio | Professional Photographer Vadodara` },
-      { name: "description", content: `View this stunning event gallery by Vinit Patel Photography Studio — the best professional photographer in Vadodara, Gujarat. Wedding, sangeet & celebration photography at its finest.` },
+      { title: `Event Gallery — Vinit Patel Photography | Professional Photographer Vadodara` },
+      { name: "description", content: `View this stunning event gallery by Vinit Patel Photography — the best professional photographer in Vadodara, Gujarat. Wedding, sangeet & celebration photography at its finest.` },
     ],
     links: [
       { rel: "canonical", href: `https://vinitpatelphotography.com/event/${params.eventId}` },

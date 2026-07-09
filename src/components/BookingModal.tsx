@@ -4,12 +4,9 @@ import { X, ChevronDown } from "lucide-react";
 import { LUXURY_EASE } from "@/animations/hero";
 
 const EVENT_TYPES = [
+  "Pre Wedding",
   "Wedding",
-  "Sangeet",
-  "Haldi",
-  "Engagement",
-  "Baby Shower",
-  "Couple Shoot",
+  "Baby Shoot",
   "Other",
 ];
 
@@ -65,7 +62,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   };
 
   const waMessage = encodeURIComponent(
-    `Hi Vinit Patel Photography Studio! I'm interested in booking for ${form.eventType || "my event"} on ${form.date || "TBD"} in ${form.location || "TBD"}.`,
+    `Hi Vinit Patel Photography! I'm interested in booking for ${form.eventType || "my event"} on ${form.date || "TBD"} in ${form.location || "TBD"}.`,
   );
 
   return (

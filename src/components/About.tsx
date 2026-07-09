@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Camera, Sparkles, UserRound } from "lucide-react";
 import { staggerContainer, staggerItem, fadeUp } from "@/animations/hero";
-import founderStudio from "@/assets/image.png";
+import founderImage from "@/assets/image.png";
 
 const FEATURES = [
   {
@@ -103,8 +103,8 @@ export function About() {
             {/* Offset gold frame */}
             <div className="absolute inset-4 border border-[color:var(--color-gold)]/70 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4" />
             <motion.img
-              src={founderStudio}
-              alt="Vinit Patel — Best wedding photographer and founder of Vinit Patel Photography Studio in Vadodara, Gujarat"
+              src={founderImage}
+              alt="Vinit Patel — Best wedding photographer and founder of Vinit Patel Photography in Vadodara, Gujarat"
               className="relative w-full max-w-[340px] object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}

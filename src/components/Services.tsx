@@ -1,13 +1,20 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Heart, Music, Baby, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Heart, Music, Baby, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import svcWedding from "@/assets/service-wedding.jpg";
 import svcSangeet from "@/assets/service-sangeet.jpg";
 import svcBaby from "@/assets/service-baby.jpg";
 import type { ServiceCategory } from "@/data/portfolioData";
 
-const SERVICES: { title: string; desc: string; image: string; icon: typeof Heart; category: ServiceCategory }[] = [
+const SERVICES: { title: string; desc: string; image: string; icon: any; category: ServiceCategory }[] = [
+  {
+    title: "PRE WEDDING",
+    desc: "Dreamy stories. Vibrant and intimate pre-wedding photoshoots capturing your unique chemistry in beautiful locations.",
+    image: svcSangeet,
+    icon: Sparkles,
+    category: "pre-wedding",
+  },
   {
     title: "WEDDING PHOTOGRAPHY",
     desc: "Big days & quiet moments. We document your entire wedding day as it naturally unfolds—from morning details to late-night exits.",
@@ -16,18 +23,11 @@ const SERVICES: { title: string; desc: string; image: string; icon: typeof Heart
     category: "wedding",
   },
   {
-    title: "SANGEET PHOTOGRAPHY",
-    desc: "The rhythm & the laughter. All the energy, the dances you practiced for weeks, and the spontaneous joy of your sangeet night.",
-    image: svcSangeet,
-    icon: Music,
-    category: "sangeet",
-  },
-  {
-    title: "BABY SHOWER PHOTOSHOOT",
-    desc: "New beginnings. Warm, intimate portraits to celebrate the sweet anticipation and love surrounding your growing family.",
+    title: "BABY SHOOT",
+    desc: "Celebrating fresh life. Heartwarming and creative baby shower, maternity, and newborn shoots to preserve your family's first milestones.",
     image: svcBaby,
     icon: Baby,
-    category: "baby-shower",
+    category: "baby-shoot",
   },
 ];
 
@@ -219,7 +219,7 @@ export function Services() {
                     <div className="relative w-full aspect-[4/3] overflow-hidden">
                       <img 
                         src={svc.image} 
-                        alt={`${svc.title} by Vinit Patel Photography Studio in Vadodara, Gujarat`}
+                        alt={`${svc.title} by Vinit Patel Photography in Vadodara, Gujarat`}
                         className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
                         loading="lazy"
                         draggable={false}

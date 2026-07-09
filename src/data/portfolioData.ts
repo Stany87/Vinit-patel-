@@ -14,27 +14,27 @@ import svcBaby from "@/assets/service-baby.jpg";
 /* ─────────────────────────────────────────────
    Service Category Types
    ───────────────────────────────────────────── */
-export type ServiceCategory = "wedding" | "sangeet" | "baby-shower";
+export type ServiceCategory = "pre-wedding" | "wedding" | "baby-shoot";
 
 export const SERVICE_META: Record<
   ServiceCategory,
   { title: string; subtitle: string; coverImage: string; eventTypes: EventType[] }
 > = {
+  "pre-wedding": {
+    title: "Pre Wedding",
+    subtitle: "Magical moments, stunning locations, and beautiful chemistry captured.",
+    coverImage: svcSangeet,
+    eventTypes: ["Couple Shoot", "Sangeet", "Engagement"],
+  },
   wedding: {
     title: "Wedding Photography",
     subtitle: "From dreamy ceremonies to grand celebrations — every emotion, every detail.",
     coverImage: svcWedding,
-    eventTypes: ["Wedding", "Haldi", "Engagement", "Couple Shoot"],
+    eventTypes: ["Wedding", "Haldi"],
   },
-  sangeet: {
-    title: "Sangeet Photography",
-    subtitle: "Fun, music, dance and endless memories beautifully captured.",
-    coverImage: svcSangeet,
-    eventTypes: ["Sangeet"],
-  },
-  "baby-shower": {
-    title: "Baby Shower Photoshoot",
-    subtitle: "Celebrating new beginnings with love, joy and heartwarming moments.",
+  "baby-shoot": {
+    title: "Baby Shoot",
+    subtitle: "Celebrating new beginnings with love, joy and heartwarming baby/maternity moments.",
     coverImage: svcBaby,
     eventTypes: ["Baby Shower"],
   },
