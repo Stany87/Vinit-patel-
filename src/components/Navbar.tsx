@@ -69,7 +69,7 @@ export function Navbar({ onBookClick }: NavbarProps) {
   }, []);
 
   const navBg = [
-    "bg-transparent py-6 border-b border-transparent",
+    "bg-gradient-to-b from-black/80 to-transparent py-6 border-b border-transparent",
     "bg-[rgba(7,7,7,0.12)] backdrop-blur-[32px] border-b border-[rgba(255,255,255,0.05)] py-4",
     "bg-[rgba(7,7,7,0.12)] backdrop-blur-[32px] border-b border-[rgba(255,255,255,0.05)] py-3",
     "bg-[rgba(7,7,7,0.12)] backdrop-blur-[32px] border-b border-[rgba(255,255,255,0.05)] py-2",
