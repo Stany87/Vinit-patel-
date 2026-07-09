@@ -42,7 +42,7 @@ export function HomePage() {
         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
           {/* Instagram Button */}
           <a
-            href="https://www.instagram.com/vinitpatelphotography"
+            href="https://www.instagram.com/vinit_patel_photography?r=nametag"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-[0_4px_15px_rgba(0,0,0,0.25)] hover:scale-110 transition-all duration-300"
@@ -56,7 +56,7 @@ export function HomePage() {
 
           {/* Facebook Button */}
           <a
-            href="https://www.facebook.com/Vinitpatelphotography/"
+            href="https://m.facebook.com/Vinitpatelphotography/?ref=bookmarks"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-[0_4px_15px_rgba(24,119,242,0.25)] hover:scale-110 transition-all duration-300 bg-[#1877F2]"
@@ -67,7 +67,7 @@ export function HomePage() {
 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/919998665014?text=Hi%20Vinit%20Patel%20Photography!%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services."
+            href="https://wa.me/919998665614?text=Hi%20Vinit%20Patel%20Photography!%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services."
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_15px_rgba(37,211,102,0.3)] hover:scale-110 transition-all duration-300"

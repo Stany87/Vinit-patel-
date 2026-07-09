@@ -271,10 +271,10 @@
 }
 
 .intro-caption h1 {
-  font-size: clamp(20px, 2.6vw, 30px);
+  font-size: clamp(38px, 6vw, 64px);
   letter-spacing: 0.02em;
   color: #f2efe9;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-edwardian);
   font-weight: 300;
 }
 

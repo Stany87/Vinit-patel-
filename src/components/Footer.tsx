@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Youtube, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, MessageCircle, Phone, Mail, MapPin, Globe } from "lucide-react";
 import contactBg from "@/assets/contact-bg.png";
 import logoImg from "@/assets/Vinit Patel Photography LOGO White.png";
 
@@ -49,10 +49,10 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             {[
-              { Icon: Facebook, href: "#", label: "Facebook" },
-              { Icon: Instagram, href: "https://www.instagram.com/vinitpatelphotography", label: "Instagram" },
-              { Icon: Youtube, href: "#", label: "YouTube" },
-              { Icon: MessageCircle, href: "https://wa.me/919998665014", label: "WhatsApp" },
+              { Icon: Facebook, href: "https://m.facebook.com/Vinitpatelphotography/?ref=bookmarks", label: "Facebook" },
+              { Icon: Instagram, href: "https://www.instagram.com/vinit_patel_photography?r=nametag", label: "Instagram" },
+              { Icon: Globe, href: "https://g.page/r/Cbu-mfIXQFMvEAo", label: "Google Page" },
+              { Icon: MessageCircle, href: "https://wa.me/919998665614", label: "WhatsApp" },
             ].map(({ Icon, href, label }) => (
               <a
                 key={label}
@@ -75,27 +75,28 @@ export function Footer() {
           <ul className="mt-6 space-y-4 text-[12px] text-white/65">
             <li>
               <a
-                href="tel:+919998665014"
+                href="tel:+919998665614"
                 className="flex items-center gap-3 hover:text-[color:var(--color-gold)] transition-colors"
               >
                 <Phone size={13} className="shrink-0 text-[color:var(--color-gold)]" />
-                +91 99986 65014
+                +91 99986 65614
               </a>
             </li>
             <li>
               <a
-                href="mailto:vinitpatel0092@gmail.com"
+                href="mailto:vinitpatelphotography2015@gmail.com"
                 className="flex items-center gap-3 hover:text-[color:var(--color-gold)] transition-colors"
               >
                 <Mail size={13} className="shrink-0 text-[color:var(--color-gold)]" />
-                vinitpatel0092@gmail.com
+                vinitpatelphotography2015@gmail.com
               </a>
             </li>
             <li className="flex items-start gap-3">
               <MapPin size={13} className="shrink-0 text-[color:var(--color-gold)] mt-0.5" />
               <span>
-                28, Muktanand Soc,<br />
-                Karelibaug, Vadodara — 390018
+                Gf- 21 Orchid Plaza,<br />
+                behind McDonald’s, Sama-Savli Road,<br />
+                Vadodara, Gujarat — 390018
               </span>
             </li>
           </ul>
@@ -139,7 +140,7 @@ export function Footer() {
             </div>
             <div className="mt-3 flex justify-start sm:justify-end">
               <a
-                href="https://www.google.com/maps/place/Vinit+Patel+Photography/@22.3506765,73.1983352,17z/data=!3m1!4b1!4m6!3m5!1s0x395fcf66dcdc945d:0x2f534017f299bebb!8m2!3d22.3506765!4d73.2009101!16s%2Fg%2F11rf843d4h?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
+                href="https://g.page/r/Cbu-mfIXQFMvEAo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.25em] text-[color:var(--color-gold)] hover:text-white transition-colors"

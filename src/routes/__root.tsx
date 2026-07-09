@@ -79,14 +79,14 @@ const LOCAL_BUSINESS_SCHEMA = {
   "name": "Vinit Patel Photography",
   "alternateName": "Vinit Patel Photography",
   "description": "Best professional photography in Vadodara, Gujarat, India. Specialising in luxury wedding, pre-wedding, and baby shower photography. 500+ couples served since 2014.",
-  "telephone": "+91-99986-65014",
-  "email": "vinitpatel0092@gmail.com",
+  "telephone": "+91-99986-65614",
+  "email": "vinitpatelphotography2015@gmail.com",
   "url": "https://vinitpatelphotography.com",
   "image": "https://vinitpatelphotography.com/og-preview.jpg",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "28, Muktanand Society",
-    "addressLocality": "Karelibaug, Vadodara",
+    "streetAddress": "Gf- 21 Orchid Plaza, behind McDonald’s, Sama-Savli Road",
+    "addressLocality": "Vemali, Vadodara",
     "addressRegion": "Gujarat",
     "postalCode": "390018",
     "addressCountry": "IN"
@@ -109,8 +109,8 @@ const LOCAL_BUSINESS_SCHEMA = {
     { "@type": "Country", "name": "India" }
   ],
   "sameAs": [
-    "https://www.instagram.com/vinitpatelphotography",
-    "https://www.facebook.com/vinitpatelphotography"
+    "https://www.instagram.com/vinit_patel_photography?r=nametag",
+    "https://m.facebook.com/Vinitpatelphotography/?ref=bookmarks"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",

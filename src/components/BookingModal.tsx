@@ -51,7 +51,14 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, wire up email/form service here
+    const messageText = `Hi Vinit Patel Photography! I'd like to book a session:
+- Event: ${form.eventType || "TBD"}
+- Date: ${form.date || "TBD"}
+- Location: ${form.location || "TBD"}
+- Phone: ${form.phone || "TBD"}
+- Message: ${form.message || "TBD"}`;
+    const waUrl = `https://wa.me/919998665614?text=${encodeURIComponent(messageText)}`;
+    window.open(waUrl, "_blank");
     setSubmitted(true);
   };
 
@@ -129,7 +136,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     24 hours. We are so excited to hear more about your plans.
                   </p>
                   <a
-                    href={`https://wa.me/919998665014?text=${waMessage}`}
+                    href={`https://wa.me/919998665614?text=${waMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-8 inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 text-[11px] tracking-[0.2em] text-white hover:bg-[#20bd5a] transition-colors"
@@ -188,25 +195,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     </div>
                   </div>
 
-                  {/* Budget */}
-                  <div>
-                    <label className="block text-[10px] tracking-[0.3em] text-white/50 mb-2">
-                      BUDGET RANGE
-                    </label>
-                    <div className="relative">
-                      <select
-                        value={form.budget}
-                        onChange={set("budget")}
-                        className="w-full appearance-none bg-white/5 border border-white/10 px-4 py-3 text-[13px] text-white focus:border-[color:var(--color-gold)] focus:outline-none transition-colors"
-                      >
-                        <option value="" className="bg-[#0b0b0b]">Select budget range</option>
-                        {BUDGETS.map((b) => (
-                          <option key={b} value={b} className="bg-[#0b0b0b]">{b}</option>
-                        ))}
-                      </select>
-                      <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                    </div>
-                  </div>
+
 
                   {/* Phone */}
                   <div>
@@ -248,7 +237,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   {/* Alternative CTAs */}
                   <div className="flex items-center gap-4 pt-2">
                     <a
-                      href={`https://wa.me/919998665014?text=${waMessage}`}
+                      href={`https://wa.me/919998665614?text=${waMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-2 border border-white/15 py-3 text-[11px] tracking-[0.2em] text-white/70 hover:border-[#25D366] hover:text-[#25D366] transition-colors"
@@ -256,7 +245,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       WHATSAPP
                     </a>
                     <a
-                      href="mailto:vinitpatel0092@gmail.com"
+                      href="mailto:vinitpatelphotography2015@gmail.com"
                       className="flex-1 flex items-center justify-center border border-white/15 py-3 text-[11px] tracking-[0.2em] text-white/70 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors"
                     >
                       EMAIL US
