@@ -107,9 +107,12 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
       {/* Layer 3: Noise */}
       <div className="absolute inset-0 hero-noise" />
 
+      {/* Layer 4: Top veil — darkens the area behind the navbar so no text bleeds through */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/90 via-black/50 to-transparent pointer-events-none" />
+
       {/* Hero content */}
-      <div className="relative z-10 flex h-full flex-col justify-end pt-[100px] pb-[120px] sm:pt-[130px] sm:pb-[80px] md:pt-[170px] md:pb-[140px]">
-        <div className="mx-auto w-full max-w-[1400px] px-6 md:px-12 flex justify-between items-end">
+      <div className="relative z-10 flex h-full flex-col pt-[100px] pb-[120px] sm:pt-[130px] sm:pb-[80px] md:pt-[170px] md:pb-[140px]">
+        <div className="mx-auto w-full max-w-[1400px] px-6 md:px-12 flex justify-between items-end mt-auto">
           
           {/* Main Text Area (Left) */}
           <motion.div 
