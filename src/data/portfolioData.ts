@@ -14,7 +14,7 @@ import svcBaby from "@/assets/service-baby.jpg";
 /* ─────────────────────────────────────────────
    Service Category Types
    ───────────────────────────────────────────── */
-export type ServiceCategory = "pre-wedding" | "wedding" | "baby-shoot";
+export type ServiceCategory = "pre-wedding" | "wedding" | "baby-shower" | "baby-shoot";
 
 export const SERVICE_META: Record<
   ServiceCategory,
@@ -32,9 +32,15 @@ export const SERVICE_META: Record<
     coverImage: svcWedding,
     eventTypes: ["Wedding", "Haldi"],
   },
+  "baby-shower": {
+    title: "Baby Shower",
+    subtitle: "Celebrating fresh beginnings with beautiful maternity and baby shower moments.",
+    coverImage: svcBaby,
+    eventTypes: ["Baby Shower"],
+  },
   "baby-shoot": {
     title: "Baby Shoot",
-    subtitle: "Celebrating new beginnings with love, joy and heartwarming baby/maternity moments.",
+    subtitle: "Newborn, toddler, and kids photography to capture their early years forever.",
     coverImage: svcBaby,
     eventTypes: ["Baby Shoot"],
   },

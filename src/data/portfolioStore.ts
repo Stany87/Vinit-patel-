@@ -441,9 +441,12 @@ export function useClientEvents() {
 export function getFallbackServiceCategory(event: ClientEvent): ServiceCategory {
   const type = (event.eventType || "").toLowerCase();
   
+  if (type.includes("shower")) {
+    return "baby-shower";
+  }
+  
   if (
     type.includes("baby") || 
-    type.includes("shower") || 
     type.includes("maternity") || 
     type.includes("kids") || 
     type.includes("child") || 

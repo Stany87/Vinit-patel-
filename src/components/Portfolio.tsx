@@ -4,43 +4,33 @@ import { fadeUp } from "@/animations/hero";
 import { portfolioContainer, portfolioItem } from "@/animations/portfolio";
 import { useClientEvents } from "@/data/portfolioStore";
 import type { ClientEvent } from "@/data/portfolioData";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
-const PORTFOLIO_CATEGORIES = [
-  "All",
-  "Wedding",
-  "Sangeet",
-  "Haldi",
-  "Engagement",
-  "Couple Shoot",
-  "Baby Shoot",
-] as const;
 
-type PortfolioCategory = (typeof PORTFOLIO_CATEGORIES)[number];
 
 const POLAROID_SLOTS = [
-  { left: "2%",  top: "4%",  rot: -8,  w: 170, z: 3 },
-  { left: "23%", top: "10%", rot: 6,   w: 165, z: 5 },
-  { left: "44%", top: "2%",  rot: -4,  w: 180, z: 4 },
-  { left: "65%", top: "8%",  rot: 9,   w: 170, z: 3 },
-  { left: "86%", top: "14%", rot: -6,  w: 160, z: 2 },
-  { left: "0%",  top: "34%", rot: 5,   w: 180, z: 4 },
+  { left: "2%", top: "4%", rot: -8, w: 170, z: 3 },
+  { left: "23%", top: "10%", rot: 6, w: 165, z: 5 },
+  { left: "44%", top: "2%", rot: -4, w: 180, z: 4 },
+  { left: "65%", top: "8%", rot: 9, w: 170, z: 3 },
+  { left: "86%", top: "14%", rot: -6, w: 160, z: 2 },
+  { left: "0%", top: "34%", rot: 5, w: 180, z: 4 },
   { left: "21%", top: "40%", rot: -10, w: 165, z: 6 },
-  { left: "42%", top: "36%", rot: 3,   w: 190, z: 7 },
-  { left: "63%", top: "40%", rot: -5,  w: 175, z: 5 },
-  { left: "84%", top: "38%", rot: 8,   w: 170, z: 4 },
-  { left: "4%",  top: "66%", rot: 4,   w: 170, z: 3 },
-  { left: "25%", top: "70%", rot: -7,  w: 165, z: 5 },
-  { left: "46%", top: "68%", rot: 6,   w: 180, z: 4 },
-  { left: "67%", top: "72%", rot: -3,  w: 170, z: 3 },
+  { left: "42%", top: "36%", rot: 3, w: 190, z: 7 },
+  { left: "63%", top: "40%", rot: -5, w: 175, z: 5 },
+  { left: "84%", top: "38%", rot: 8, w: 170, z: 4 },
+  { left: "4%", top: "66%", rot: 4, w: 170, z: 3 },
+  { left: "25%", top: "70%", rot: -7, w: 165, z: 5 },
+  { left: "46%", top: "68%", rot: 6, w: 180, z: 4 },
+  { left: "67%", top: "72%", rot: -3, w: 170, z: 3 },
 ];
 
 const CONFETTI = [
-  { left: "48%", top: "1%",  rot: 10,  c: "#d4b062" },
-  { left: "2%",  top: "62%", rot: -20, c: "#C89B3C" },
-  { left: "14%", top: "94%", rot: 25,  c: "#C89B3C" },
-  { left: "82%", top: "60%", rot: -8,  c: "#d4b062" },
-  { left: "92%", top: "88%", rot: 14,  c: "#C89B3C" },
+  { left: "48%", top: "1%", rot: 10, c: "#d4b062" },
+  { left: "2%", top: "62%", rot: -20, c: "#C89B3C" },
+  { left: "14%", top: "94%", rot: 25, c: "#C89B3C" },
+  { left: "82%", top: "60%", rot: -8, c: "#d4b062" },
+  { left: "92%", top: "88%", rot: 14, c: "#C89B3C" },
 ];
 
 const SLOT_MAPPINGS: Record<number, number[]> = {
@@ -146,7 +136,18 @@ function DesktopPolaroidCard({ event, i, p, onOpen, globalX, globalY }: DesktopP
 export function Portfolio() {
   const navigate = useNavigate();
   const { events } = useClientEvents();
-  const [activeCategory, setActiveCategory] = useState<PortfolioCategory>("All");
+  const portfolioCategories = useMemo(() => {
+    const uniqueTypes = Array.from(new Set(events.map((e) => e.eventType).filter(Boolean)));
+    return ["All", ...uniqueTypes];
+  }, [events]);
+
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  useEffect(() => {
+    if (!portfolioCategories.includes(activeCategory)) {
+      setActiveCategory("All");
+    }
+  }, [portfolioCategories, activeCategory]);
 
   const filtered = useMemo(() => {
     if (activeCategory === "All") return events;
@@ -200,15 +201,14 @@ export function Portfolio() {
 
         {/* Filter tabs */}
         <motion.div {...fadeUp} className="mt-12 flex flex-wrap justify-center gap-2 sm:gap-6 md:gap-8">
-          {PORTFOLIO_CATEGORIES.map((cat) => (
+          {portfolioCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`relative py-2.5 px-2 md:py-2 md:px-0 text-[11px] tracking-[0.3em] transition-colors duration-300 ${
-                activeCategory === cat
-                  ? "text-[color:var(--color-gold)] font-medium"
-                  : "text-[color:var(--color-ink)]/50 hover:text-[color:var(--color-gold)]"
-              }`}
+              className={`relative py-2.5 px-2 md:py-2 md:px-0 text-[11px] tracking-[0.3em] transition-colors duration-300 ${activeCategory === cat
+                ? "text-[color:var(--color-gold)] font-medium"
+                : "text-[color:var(--color-ink)]/50 hover:text-[color:var(--color-gold)]"
+                }`}
             >
               {cat.toUpperCase()}
               <AnimatePresence>
