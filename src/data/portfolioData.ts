@@ -43,13 +43,7 @@ export const SERVICE_META: Record<
 /* ─────────────────────────────────────────────
    Event / Image Types
    ───────────────────────────────────────────── */
-export type EventType =
-  | "Wedding"
-  | "Sangeet"
-  | "Haldi"
-  | "Engagement"
-  | "Couple Shoot"
-  | "Baby Shower";
+export type EventType = string;
 
 export interface EventImage {
   src: string;

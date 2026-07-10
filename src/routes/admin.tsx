@@ -75,18 +75,15 @@ export const Route = createFileRoute("/admin")({
   component: AdminPortal,
 });
 
-const EVENT_TYPES: EventType[] = [
-  "Wedding",
-  "Sangeet",
-  "Haldi",
-  "Engagement",
-  "Couple Shoot",
-  "Baby Shower",
-];
-
 function AdminPortal() {
   const { events, addEvent, updateEvent, deleteEvent, resetToDefault, importBackup } =
     useClientEvents();
+
+  // Get unique event types dynamically, falling back to standard categories
+  const defaultEventTypes = ["Wedding", "Sangeet", "Haldi", "Engagement", "Couple Shoot", "Baby Shower"];
+  const uniqueEventTypes = Array.from(
+    new Set([...defaultEventTypes, ...events.map((e) => e.eventType).filter(Boolean)])
+  );
 
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
@@ -480,7 +477,7 @@ function AdminPortal() {
                 className="rounded-lg border border-neutral-200 px-3 py-2 text-xs text-[color:var(--color-ink)] bg-white focus:outline-none"
               >
                 <option value="All">All Types</option>
-                {EVENT_TYPES.map((t) => (
+                {uniqueEventTypes.map((t) => (
                   <option key={t} value={t}>
                     {t}
                   </option>
@@ -651,17 +648,14 @@ function AdminPortal() {
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
                       Event Category *
                     </label>
-                    <select
+                    <input
+                      type="text"
+                      placeholder="e.g. Wedding, Pre Wedding, Baby Shower"
                       value={eventType}
-                      onChange={(e) => setEventType(e.target.value as EventType)}
+                      onChange={(e) => setEventType(e.target.value)}
+                      required
                       className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-xs text-[color:var(--color-ink)] bg-white focus:border-[color:var(--color-gold)]/60 focus:outline-none"
-                    >
-                      {EVENT_TYPES.map((t) => (
-                        <option key={t} value={t}>
-                          {t}
-                        </option>
-                      ))}
-                    </select>
+                    />
                   </div>
 
 
