@@ -7,7 +7,7 @@ export type PortfolioCategory =
   | "Haldi"
   | "Engagement"
   | "Couple Shoot"
-  | "Baby Shower";
+  | "Baby Shoot";
 
 export const PORTFOLIO_CATEGORIES: PortfolioCategory[] = [
   "All",
@@ -16,7 +16,7 @@ export const PORTFOLIO_CATEGORIES: PortfolioCategory[] = [
   "Haldi",
   "Engagement",
   "Couple Shoot",
-  "Baby Shower",
+  "Baby Shoot",
 ];
 
 export interface PortfolioImage {

@@ -6,8 +6,8 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Vinit Patel Photography | Best Wedding Photographer in Vadodara, Gujarat" },
-      { name: "description", content: "Vinit Patel Photography — the top-rated professional photographer in Vadodara, Gujarat. We specialise in luxury wedding photography, sangeet coverage, engagement shoots & baby shower photoshoots. 500+ happy couples. Book today!" },
-      { name: "keywords", content: "best photographer in vadodara, photography in vadodara, professional photography, wedding photographer vadodara, best wedding photographer gujarat, sangeet photographer, baby shower photographer vadodara, luxury wedding photography gujarat, Vinit Patel Photography, event photographer vadodara" },
+      { name: "description", content: "Vinit Patel Photography — the top-rated professional photographer in Vadodara, Gujarat. We specialise in luxury wedding photography, sangeet coverage, engagement shoots & baby shoot photoshoots. 500+ happy couples. Book today!" },
+      { name: "keywords", content: "best photographer in vadodara, photography in vadodara, professional photography, wedding photographer vadodara, best wedding photographer gujarat, sangeet photographer, baby shoot photographer vadodara, luxury wedding photography gujarat, Vinit Patel Photography, event photographer vadodara" },
       { property: "og:title", content: "Vinit Patel Photography | Best Wedding Photographer in Vadodara" },
       { property: "og:description", content: "Luxury wedding & event photography in Vadodara, Gujarat. 500+ couples trust us to capture their most special moments." },
       { property: "og:type", content: "website" },

@@ -13,7 +13,7 @@ const PORTFOLIO_CATEGORIES = [
   "Haldi",
   "Engagement",
   "Couple Shoot",
-  "Baby Shower",
+  "Baby Shoot",
 ] as const;
 
 type PortfolioCategory = (typeof PORTFOLIO_CATEGORIES)[number];

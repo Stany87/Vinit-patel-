@@ -6,7 +6,7 @@ import { LUXURY_EASE } from "@/animations/hero";
 const EVENT_TYPES = [
   "Pre Wedding",
   "Wedding",
-  "Baby Shower",
+  "Baby Shoot",
   "Other",
 ];
 

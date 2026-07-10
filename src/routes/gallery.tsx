@@ -12,7 +12,7 @@ export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
       { title: "Photo Gallery | Vinit Patel Photography — Vadodara Photographer Portfolio" },
-      { name: "description", content: "Browse the portfolio of Vinit Patel Photography — weddings, sangeets, engagements & baby showers. See why we are rated the best professional photographer in Vadodara, Gujarat." },
+      { name: "description", content: "Browse the portfolio of Vinit Patel Photography — weddings, sangeets, engagements & baby shoots. See why we are rated the best professional photographer in Vadodara, Gujarat." },
       { property: "og:title", content: "Photo Gallery — Vinit Patel Photography" },
       { property: "og:description", content: "Explore stunning wedding, sangeet & event photography from Vadodara's top photographer." },
     ],

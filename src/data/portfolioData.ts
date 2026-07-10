@@ -33,10 +33,10 @@ export const SERVICE_META: Record<
     eventTypes: ["Wedding", "Haldi"],
   },
   "baby-shoot": {
-    title: "Baby Shower",
+    title: "Baby Shoot",
     subtitle: "Celebrating new beginnings with love, joy and heartwarming baby/maternity moments.",
     coverImage: svcBaby,
-    eventTypes: ["Baby Shower"],
+    eventTypes: ["Baby Shoot"],
   },
 };
 
@@ -363,59 +363,59 @@ export const CLIENT_EVENTS: ClientEvent[] = [
   },
   {
     "id": "baby-shower-joy",
-    "clientNames": "Baby Shower Joy",
-    "eventType": "Baby Shower",
+    "clientNames": "Baby Shoot Joy",
+    "eventType": "Baby Shoot",
     "location": "Anand",
     "date": "July 2024",
     "coverImage": "/events/baby-shower-joy/image_1.jpg",
     "images": [
       {
         "src": "/events/baby-shower-joy/image_1.jpg",
-        "alt": "Baby Shower Joy - Photo 1"
+        "alt": "Baby Shoot Joy - Photo 1"
       },
       {
         "src": "/events/baby-shower-joy/image_2.jpg",
-        "alt": "Baby Shower Joy - Photo 2"
+        "alt": "Baby Shoot Joy - Photo 2"
       },
       {
         "src": "/events/baby-shower-joy/image_3.jpg",
-        "alt": "Baby Shower Joy - Photo 3"
+        "alt": "Baby Shoot Joy - Photo 3"
       },
       {
         "src": "/events/baby-shower-joy/image_4.jpg",
-        "alt": "Baby Shower Joy - Photo 4"
+        "alt": "Baby Shoot Joy - Photo 4"
       },
       {
         "src": "/events/baby-shower-joy/image_5.jpg",
-        "alt": "Baby Shower Joy - Photo 5"
+        "alt": "Baby Shoot Joy - Photo 5"
       },
       {
         "src": "/events/baby-shower-joy/image_6.jpg",
-        "alt": "Baby Shower Joy - Photo 6"
+        "alt": "Baby Shoot Joy - Photo 6"
       },
       {
         "src": "/events/baby-shower-joy/image_7.jpg",
-        "alt": "Baby Shower Joy - Photo 7"
+        "alt": "Baby Shoot Joy - Photo 7"
       },
       {
         "src": "/events/baby-shower-joy/image_8.jpg",
-        "alt": "Baby Shower Joy - Photo 8"
+        "alt": "Baby Shoot Joy - Photo 8"
       },
       {
         "src": "/events/baby-shower-joy/image_9.jpg",
-        "alt": "Baby Shower Joy - Photo 9"
+        "alt": "Baby Shoot Joy - Photo 9"
       },
       {
         "src": "/events/baby-shower-joy/image_10.jpg",
-        "alt": "Baby Shower Joy - Photo 10"
+        "alt": "Baby Shoot Joy - Photo 10"
       },
       {
         "src": "/events/baby-shower-joy/image_11.jpg",
-        "alt": "Baby Shower Joy - Photo 11"
+        "alt": "Baby Shoot Joy - Photo 11"
       },
       {
         "src": "/events/baby-shower-joy/image_12.jpg",
-        "alt": "Baby Shower Joy - Photo 12"
+        "alt": "Baby Shoot Joy - Photo 12"
       }
     ]
   },

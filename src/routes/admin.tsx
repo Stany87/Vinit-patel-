@@ -80,7 +80,7 @@ function AdminPortal() {
     useClientEvents();
 
   // Get unique event types dynamically, falling back to standard categories
-  const defaultEventTypes = ["Wedding", "Sangeet", "Haldi", "Engagement", "Couple Shoot", "Baby Shower"];
+  const defaultEventTypes = ["Wedding", "Sangeet", "Haldi", "Engagement", "Couple Shoot", "Baby Shoot"];
   const uniqueEventTypes = Array.from(
     new Set([...defaultEventTypes, ...events.map((e) => e.eventType).filter(Boolean)])
   );
@@ -650,7 +650,7 @@ function AdminPortal() {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Wedding, Pre Wedding, Baby Shower"
+                      placeholder="e.g. Wedding, Pre Wedding, Baby Shoot"
                       value={eventType}
                       onChange={(e) => setEventType(e.target.value)}
                       required
