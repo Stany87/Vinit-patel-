@@ -184,12 +184,12 @@ function AdminPortal() {
   // Opening form to edit an event
   const openEditEventForm = (event: ClientEvent) => {
     setEditingEvent(event);
-    setClientNames(event.clientNames);
-    setEventType(event.eventType);
-    setLocation(event.location);
-    setDate(event.date);
-    setCoverImage(event.coverImage);
-    setGalleryImages(event.images);
+    setClientNames(event.clientNames || "");
+    setEventType(event.eventType || "Wedding");
+    setLocation(event.location || "");
+    setDate(event.date || "");
+    setCoverImage(event.coverImage || "");
+    setGalleryImages(event.images || []);
     setIsFormOpen(true);
   };
 
@@ -203,12 +203,12 @@ function AdminPortal() {
     }
 
     const eventPayload = {
-      clientNames: clientNames.trim(),
-      eventType: eventType.trim(),
-      location: location.trim(),
-      date: date.trim(),
-      coverImage,
-      images: galleryImages,
+      clientNames: (clientNames || "").trim(),
+      eventType: (eventType || "").trim(),
+      location: (location || "").trim(),
+      date: (date || "").trim(),
+      coverImage: coverImage || "",
+      images: galleryImages || [],
     };
 
     try {

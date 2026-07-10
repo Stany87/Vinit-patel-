@@ -15,6 +15,7 @@ import svcSangeet from "@/assets/service-sangeet.jpg";
 import svcBaby from "@/assets/service-baby.jpg";
 import founder from "@/assets/WhatsApp Image 2026-07-09 at 4.48.42 PM.jpeg";
 import collage from "@/assets/collage.jpg";
+import logoWhite from "@/assets/Vinit Patel Photography LOGO White.png";
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -215,7 +216,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         </div>
 
         <div className="intro-caption" ref={captionRef}>
-          <h1>Vinit Patel Photography</h1>
+          <img src={logoWhite} alt="Vinit Patel Photography" />
           <p>Tap to enter</p>
         </div>
       </div>
