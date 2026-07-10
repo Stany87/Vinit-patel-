@@ -197,7 +197,7 @@ function AdminPortal() {
   };
 
   // Submitting the event form
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!coverImage) {
@@ -215,18 +215,21 @@ function AdminPortal() {
     };
 
     try {
+      setIsProcessing(true);
       if (editingEvent) {
-        updateEvent({
+        await updateEvent({
           ...eventPayload,
           id: editingEvent.id,
         });
       } else {
-        addEvent(eventPayload);
+        await addEvent(eventPayload);
       }
       setIsFormOpen(false);
     } catch (error) {
       console.error("Failed to save event:", error);
-      alert("Failed to save event. Your browser's storage space is full (maximum 5MB). Please try using smaller/compressed images or fewer photos.");
+      alert("Failed to save event. If you are using Local Storage, your browser's space might be full (max 5MB). If you are using Supabase, please verify database credentials.");
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -247,16 +250,20 @@ function AdminPortal() {
     if (!files || files.length === 0) return;
     const file = files[0];
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       try {
         const json = JSON.parse(event.target?.result as string);
-        if (importBackup(json)) {
+        setIsProcessing(true);
+        const success = await importBackup(json);
+        if (success) {
           alert("Backup imported successfully!");
         } else {
           alert("Invalid backup format.");
         }
       } catch (err) {
         alert("Failed to parse JSON file.");
+      } finally {
+        setIsProcessing(false);
       }
     };
     reader.readAsText(file);
@@ -431,9 +438,17 @@ function AdminPortal() {
               </label>
 
               <button
-                onClick={() => {
+                onClick={async () => {
                   if (confirm("Are you sure you want to reset the portfolio database back to default static assets? Any uploaded events will be lost!")) {
-                    resetToDefault();
+                    try {
+                      setIsProcessing(true);
+                      await resetToDefault();
+                      alert("Database reset to defaults successfully!");
+                    } catch (err) {
+                      alert("Failed to reset database to defaults.");
+                    } finally {
+                      setIsProcessing(false);
+                    }
                   }
                 }}
                 title="Reset database to default demo pictures"
@@ -535,9 +550,16 @@ function AdminPortal() {
                           <Edit3 size={16} />
                         </button>
                         <button
-                          onClick={() => {
-                            if (confirm(`Are you sure you want to delete ${event.clientNames}'s event?`)) {
-                              deleteEvent(event.id);
+                          onClick={async () => {
+                            if (confirm(`Are you sure you want to delete ${event.clientNames || "this"}'s event?`)) {
+                              try {
+                                setIsProcessing(true);
+                                await deleteEvent(event.id);
+                              } catch (err) {
+                                alert("Failed to delete event.");
+                              } finally {
+                                setIsProcessing(false);
+                              }
                             }
                           }}
                           title="Delete event"
