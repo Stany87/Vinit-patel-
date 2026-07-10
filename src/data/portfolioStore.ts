@@ -5,6 +5,7 @@ import {
   collection, 
   getDocsFromServer, 
   doc, 
+  setDoc,
   query, 
   orderBy, 
   where, 
@@ -232,11 +233,9 @@ export function useClientEvents() {
 
   const updateEvent = async (updatedEvent: ClientEvent) => {
     if (isFirebaseEnabled() && db) {
-      const batch = writeBatch(db);
-
       // 1. Update event document
       const eventDocRef = doc(db, "events", updatedEvent.id);
-      batch.set(eventDocRef, {
+      await setDoc(eventDocRef, {
         clientNames: updatedEvent.clientNames,
         eventType: updatedEvent.eventType,
         location: updatedEvent.location || "",
@@ -244,29 +243,39 @@ export function useClientEvents() {
         coverImage: updatedEvent.coverImage,
       }, { merge: true });
 
-      // 2. Delete existing images for this event
-      const imagesRef = collection(db, "event_images");
-      const q = query(imagesRef, where("eventId", "==", updatedEvent.id));
-      const querySnapshot = await getDocsFromServer(q);
-      
-      querySnapshot.forEach((doc) => {
-        batch.delete(doc.ref);
-      });
+      // 2. Check if gallery images actually changed
+      const currentEvent = events.find((e) => e.id === updatedEvent.id);
+      const currentImagesStr = JSON.stringify(currentEvent?.images || []);
+      const newImagesStr = JSON.stringify(updatedEvent.images || []);
 
-      // 3. Add new images
-      if (updatedEvent.images && updatedEvent.images.length > 0) {
-        updatedEvent.images.forEach((img) => {
-          const imageDocRef = doc(collection(db, "event_images"));
-          batch.set(imageDocRef, {
-            eventId: updatedEvent.id,
-            src: img.src,
-            alt: img.alt || "Event Photo",
-            createdAt: new Date().toISOString()
-          });
+      if (currentImagesStr !== newImagesStr) {
+        const batch = writeBatch(db);
+
+        // Delete existing images for this event
+        const imagesRef = collection(db, "event_images");
+        const q = query(imagesRef, where("eventId", "==", updatedEvent.id));
+        const querySnapshot = await getDocsFromServer(q);
+        
+        querySnapshot.forEach((doc) => {
+          batch.delete(doc.ref);
         });
+
+        // Add new images
+        if (updatedEvent.images && updatedEvent.images.length > 0) {
+          updatedEvent.images.forEach((img) => {
+            const imageDocRef = doc(collection(db, "event_images"));
+            batch.set(imageDocRef, {
+              eventId: updatedEvent.id,
+              src: img.src,
+              alt: img.alt || "Event Photo",
+              createdAt: new Date().toISOString()
+            });
+          });
+        }
+
+        await batch.commit();
       }
 
-      await batch.commit();
       await fetchEventsFromFirebase();
     } else {
       const current = getStoredEvents();
