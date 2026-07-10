@@ -200,6 +200,8 @@ export function useClientEvents() {
       batch.set(eventDocRef, {
         clientNames: event.clientNames,
         eventType: event.eventType,
+        location: event.location || "",
+        date: event.date || "",
         coverImage: event.coverImage,
         createdAt: new Date().toISOString()
       });
@@ -233,11 +235,13 @@ export function useClientEvents() {
 
       // 1. Update event document
       const eventDocRef = doc(db, "events", updatedEvent.id);
-      batch.update(eventDocRef, {
+      batch.set(eventDocRef, {
         clientNames: updatedEvent.clientNames,
         eventType: updatedEvent.eventType,
+        location: updatedEvent.location || "",
+        date: updatedEvent.date || "",
         coverImage: updatedEvent.coverImage,
-      });
+      }, { merge: true });
 
       // 2. Delete existing images for this event
       const imagesRef = collection(db, "event_images");
@@ -323,6 +327,8 @@ export function useClientEvents() {
         batch.set(eventDocRef, {
           clientNames: event.clientNames,
           eventType: event.eventType,
+          location: event.location || "",
+          date: event.date || "",
           coverImage: event.coverImage,
           createdAt: new Date().toISOString()
         });
@@ -376,6 +382,8 @@ export function useClientEvents() {
           batch.set(eventDocRef, {
             clientNames: event.clientNames,
             eventType: event.eventType,
+            location: event.location || "",
+            date: event.date || "",
             coverImage: event.coverImage,
             createdAt: new Date().toISOString()
           });
